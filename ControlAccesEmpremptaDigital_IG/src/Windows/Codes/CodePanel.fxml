@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Codes.AddPermCodeViewController">
+   <children>
+      <Pane layoutY="4.0" prefHeight="58.0" prefWidth="655.0">
+         <children>
+            <Label layoutX="367.0" layoutY="23.0" prefHeight="22.0" prefWidth="51.0" text="User:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="311.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="3.0" layoutY="66.0" prefHeight="425.0" prefWidth="648.0">
+         <children>
+            <ImageView fitHeight="408.0" fitWidth="423.0" layoutX="346.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/lock.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="425.0" prefWidth="282.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e4e8" height="340.0" layoutX="20.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Button fx:id="button8" layoutX="105.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton8Click" prefHeight="70.0" prefWidth="70.0" text="8" />
+                  <Button fx:id="button5" layoutX="105.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton5Click" prefHeight="70.0" prefWidth="70.0" text="5" />
+                  <Button fx:id="button2" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton2Click" prefHeight="70.0" prefWidth="70.0" text="2" />
+                  <Button fx:id="button0" layoutX="105.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#OnButton0Click" prefHeight="70.0" prefWidth="70.0" text="0" />
+                  <Button fx:id="button6" layoutX="180.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton6Click" prefHeight="70.0" prefWidth="70.0" text="6" />
+                  <Button fx:id="button4" layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton4Click" prefHeight="70.0" prefWidth="70.0" text="4" />
+                  <Button fx:id="button9" layoutX="180.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton9Click" prefHeight="70.0" prefWidth="70.0" text="9" />
+                  <Button fx:id="button7" layoutX="30.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton7Click" prefHeight="70.0" prefWidth="70.0" text="7" />
+                  <Button fx:id="button3" layoutX="180.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton3Click" prefHeight="70.0" prefWidth="70.0" text="3" />
+                  <Button fx:id="button1" layoutX="30.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton1Click" prefHeight="70.0" prefWidth="70.0" text="1" />
+                  <Button layoutX="180.0" layoutY="310.0" mnemonicParsing="false" opacity="0.5" prefHeight="70.0" prefWidth="70.0" />
+                  <Button layoutX="30.0" layoutY="310.0" mnemonicParsing="false" opacity="0.5" prefHeight="70.0" prefWidth="70.0" />
+                  <Label layoutX="20.0" layoutY="11.0" text="NOU CODI PERMANENT:" underline="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextField fx:id="textCode" layoutX="324.0" layoutY="74.0" promptText="HOLA" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.LogIn.LogInViewController">
+   <children>
+      <Text layoutX="163.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuari" wrappingWidth="44.13427734375" />
+      <TextField fx:id="fieldUser" layoutX="247.0" layoutY="187.0" promptText="Username" />
+      <Text layoutX="163.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrasenya" wrappingWidth="74.13427734375" />
+      <PasswordField fx:id="fieldPass" layoutX="247.0" layoutY="234.0" promptText="Password" />
+      <Button fx:id="buttonEnter" layoutX="447.0" layoutY="201.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="51.0" />
+      <Text layoutX="45.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTOR DE CONTROL D'CACCÉS" textAlignment="CENTER" wrappingWidth="564.13427734375">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="253.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../logos/shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="290.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../logos/login.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="buttonEnterImage" fitHeight="34.0" fitWidth="34.0" layoutX="456.0" layoutY="207.0" onMouseClicked="#OnLogInButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../logos/arrow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

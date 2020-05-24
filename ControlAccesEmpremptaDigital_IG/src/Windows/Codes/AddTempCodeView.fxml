@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Codes.AddTempCodeViewController">
+   <children>
+      <Pane layoutY="4.0" prefHeight="58.0" prefWidth="655.0">
+         <children>
+            <Label layoutX="367.0" layoutY="23.0" prefHeight="22.0" prefWidth="51.0" text="User:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="bttn_back" fitHeight="35.0" fitWidth="44.0" layoutX="34.0" layoutY="12.0" onMouseClicked="#OnBackButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/back_arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="44.0" layoutX="103.0" layoutY="11.0" onMouseClicked="#OnSettingsButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="311.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="3.0" layoutY="66.0" prefHeight="425.0" prefWidth="648.0">
+         <children>
+            <Pane prefHeight="425.0" prefWidth="282.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e4e8" height="340.0" layoutX="20.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Button fx:id="button81" layoutX="105.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton8Click" prefHeight="70.0" prefWidth="70.0" text="8" />
+                  <Button fx:id="button51" layoutX="105.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton5Click" prefHeight="70.0" prefWidth="70.0" text="5" />
+                  <Button fx:id="button21" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton2Click" prefHeight="70.0" prefWidth="70.0" text="2" />
+                  <Button fx:id="button01" layoutX="105.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#OnButton0Click" prefHeight="70.0" prefWidth="70.0" text="0" />
+                  <Button fx:id="button61" layoutX="180.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton6Click" prefHeight="70.0" prefWidth="70.0" text="6" />
+                  <Button fx:id="button41" layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton4Click" prefHeight="70.0" prefWidth="70.0" text="4" />
+                  <Button fx:id="button91" layoutX="180.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton9Click" prefHeight="70.0" prefWidth="70.0" text="9" />
+                  <Button fx:id="button71" layoutX="30.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton7Click" prefHeight="70.0" prefWidth="70.0" text="7" />
+                  <Button fx:id="button31" layoutX="180.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton3Click" prefHeight="70.0" prefWidth="70.0" text="3" />
+                  <Button fx:id="button11" layoutX="30.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton1Click" prefHeight="70.0" prefWidth="70.0" text="1" />
+                  <Button layoutX="180.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#OnEraseButtonClicked" prefHeight="70.0" prefWidth="70.0">
+                     <graphic>
+                        <ImageView fx:id="buttonErase" fitHeight="23.0" fitWidth="26.0" onMouseClicked="#OnEraseButtonClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../logos/erase.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button layoutX="30.0" layoutY="310.0" mnemonicParsing="false" opacity="0.5" prefHeight="70.0" prefWidth="70.0" />
+                  <Label layoutX="32.0" layoutY="14.0" text="NOU CODI TEMPORAL:" underline="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fitHeight="408.0" fitWidth="423.0" layoutX="346.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/lock.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="textCode" layoutX="418.0" layoutY="66.0" prefHeight="34.0" prefWidth="177.0" promptText="...">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <Label layoutX="324.0" layoutY="69.0" text="CODI:">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonSave" layoutX="363.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#OnSaveButtonClicked" prefHeight="86.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(#00CCCC,#9AFFED);" text="GUARDAR">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../logos/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Label layoutX="324.0" layoutY="120.0" text="USOS:">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbRemainingUses" layoutX="432.0" layoutY="125.0" prefHeight="27.0" prefWidth="164.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
