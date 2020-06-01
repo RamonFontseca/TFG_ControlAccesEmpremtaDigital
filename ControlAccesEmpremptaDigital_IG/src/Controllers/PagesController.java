@@ -1,8 +1,9 @@
 package Controllers;
 
 import Windows.Codes.AddTempCodeViewController;
+import Windows.Codes.DeleteCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController;
-import Windows.MainMenu.MainMenuViewController;
+import Windows.Codes.EnableDisableCodesViewController2;
 import Windows.Settings.SettingsViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,6 +23,7 @@ public class PagesController {
     public String page_AddPermCode = "/Windows/Codes/AddPermCodeView.fxml";
     public String page_AddTempCode = "/Windows/Codes/AddTempCodeView.fxml";
     public String page_EnableDisableCodes = "/Windows/Codes/EnableDisableCodesView.fxml";
+    public String page_DeleteCode = "/Windows/Codes/DeleteCodesView.fxml";
 
     String previousWindow;
 
@@ -111,6 +113,23 @@ public class PagesController {
             e.printStackTrace();
         }
         EnableDisableCodesViewController enableDisableCodesViewController = loader.getController();
+        enableDisableCodesViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToDeleteCodeScreenConstructing(MouseEvent mouseEvent, String page_deleteCode) {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(page_deleteCode));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeleteCodesViewController enableDisableCodesViewController = loader.getController();
         enableDisableCodesViewController.InitData();
 
         Scene scene = new Scene(root);

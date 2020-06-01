@@ -114,7 +114,7 @@
                         <Font size="30.0" />
                      </font>
                   </Text>
-                  <Button fx:id="bttnDeleteCodes" layoutX="542.0" layoutY="6.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="51.0">
+                  <Button fx:id="bttnDeleteCodes" layoutX="542.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#OnDeleteCodesButtonClicked" prefHeight="46.0" prefWidth="51.0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>

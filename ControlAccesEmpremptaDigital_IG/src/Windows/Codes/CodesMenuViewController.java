@@ -26,4 +26,8 @@ public class CodesMenuViewController {
     public void OnChangeStatusCodeButtonClicked(MouseEvent mouseEvent) {
         pagesController.goToEnableDisableCodeScreenConstructing(mouseEvent, pagesController.page_EnableDisableCodes);
     }
+
+    public void OnDeleteCodesButtonClicked(MouseEvent mouseEvent) {
+        pagesController.goToDeleteCodeScreenConstructing(mouseEvent, pagesController.page_DeleteCode);
+    }
 }

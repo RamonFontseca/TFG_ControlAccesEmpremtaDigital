@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class EnableDisableCodesViewController {
+public class EnableDisableCodesViewController2 {
 
     @FXML private TableView<Code> tableCodes;
     @FXML private TableColumn<Code, String> columnCode;
@@ -30,15 +30,9 @@ public class EnableDisableCodesViewController {
         codesController = new CodesController();
 
         tableCodes.setEditable(true);
-        tableCodes.setFixedCellSize(40.0);
-        columnCode.setStyle( "-fx-alignment: CENTER;");
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
         columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("IsEnabled"));
-        columnCode.setResizable(false);
-        columnUses.setResizable(false);
-        columnState.setResizable(false);
-
 
 
 

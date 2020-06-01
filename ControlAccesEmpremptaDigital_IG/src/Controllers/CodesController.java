@@ -67,4 +67,23 @@ public class CodesController {
     }
 
 
+    public void updateCode(Code c) {
+        try {
+            if (isExistingCode(c.getCodeNum(), c.getRemainingUses())){
+                conn.UpdateCode(c);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCode(Code c) {
+        try {
+            if (isExistingCode(c.getCodeNum(), c.getRemainingUses())){
+                conn.DeleteCode(c);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

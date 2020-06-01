@@ -31,15 +31,31 @@ public class Code {
         return remainingUses;
     }
 
+    //public int getStatus(){ return isEnabled;}
     public String getStatus(){
         if (this.IsCodeEnabled()) return "HABILITAT";
         else return "DESHABILITAT";
     }
 
+    public String getIsEnabled(){
+        if (this.IsCodeEnabled()) return "HABILITAT";
+        else return "DESHABILITAT";
+    }
+
+    public int getIsEnabledInteger(){
+        return isEnabled;
+    }
+
+
     public boolean IsCodeEnabled(){ return (this.isEnabled == 1); }
 
     public void setRemainingUses(int remainingUses){
         this.remainingUses = remainingUses;
+    }
+
+    public void changeState(){
+        if (this.IsCodeEnabled()) this.isEnabled = 0;
+        else this.isEnabled = 1;
     }
 
     public boolean equalsCode(Code c) {

@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class EnableDisableCodesViewController {
+public class DeleteCodesViewController {
 
     @FXML private TableView<Code> tableCodes;
     @FXML private TableColumn<Code, String> columnCode;
@@ -30,17 +30,9 @@ public class EnableDisableCodesViewController {
         codesController = new CodesController();
 
         tableCodes.setEditable(true);
-        tableCodes.setFixedCellSize(40.0);
-        columnCode.setStyle( "-fx-alignment: CENTER;");
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
         columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("IsEnabled"));
-        columnCode.setResizable(false);
-        columnUses.setResizable(false);
-        columnState.setResizable(false);
-
-
-
 
         PopulateListView();
     }
@@ -67,14 +59,15 @@ public class EnableDisableCodesViewController {
         System.out.println(tableCodes.getSelectionModel().getSelectedItem().getCodeNum());
 
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Canviar d'estat el codi ' " + tableCodes.getSelectionModel().getSelectedItem().getCodeNum() + "' ?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Esborrar el codi ' " + tableCodes.getSelectionModel().getSelectedItem().getCodeNum() + "' ?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
-            tableCodes.getSelectionModel().getSelectedItem().changeState();
             Code c = tableCodes.getSelectionModel().getSelectedItem();
+            Code selectedItem = tableCodes.getSelectionModel().getSelectedItem();
+            tableCodes.getItems().remove(selectedItem);
+            codesController.deleteCode(c);
             tableCodes.refresh();
-            codesController.updateCode(c);
         }
     }
 }
