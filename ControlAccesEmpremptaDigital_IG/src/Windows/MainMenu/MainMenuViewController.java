@@ -1,6 +1,8 @@
 package Windows.MainMenu;
 
+import Controllers.CodesController;
 import Controllers.PagesController;
+import Model.Code;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,7 +19,8 @@ public class MainMenuViewController {
 
     @FXML private Label username;
 
-    PagesController pagesController = new PagesController();
+    private PagesController pagesController = new PagesController();
+    private CodesController codesController = new CodesController();
 
     public void initData(String username) {
         this.username.setText(username);

@@ -1,6 +1,7 @@
 package Windows.Codes;
 
 import Controllers.CodesController;
+import Controllers.FilesController;
 import Controllers.PagesController;
 import Model.Code;
 import javafx.beans.Observable;
@@ -24,10 +25,12 @@ public class EnableDisableCodesViewController {
 
     private PagesController pagesController;
     private CodesController codesController;
+    private FilesController filesController;
 
     public void InitData(){
         pagesController = new PagesController();
         codesController = new CodesController();
+        filesController = new FilesController();
 
         tableCodes.setEditable(true);
         tableCodes.setFixedCellSize(40.0);
@@ -38,8 +41,6 @@ public class EnableDisableCodesViewController {
         columnCode.setResizable(false);
         columnUses.setResizable(false);
         columnState.setResizable(false);
-
-
 
 
         PopulateListView();
@@ -74,6 +75,8 @@ public class EnableDisableCodesViewController {
             tableCodes.getSelectionModel().getSelectedItem().changeState();
             Code c = tableCodes.getSelectionModel().getSelectedItem();
             tableCodes.refresh();
+            filesController.ClearFile(filesController.codesFilePath);
+            codesController.SaveCodes();
             codesController.updateCode(c);
         }
     }

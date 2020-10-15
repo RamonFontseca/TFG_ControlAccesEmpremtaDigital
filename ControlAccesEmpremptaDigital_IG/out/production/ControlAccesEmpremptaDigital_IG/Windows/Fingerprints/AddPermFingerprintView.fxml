@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Fingerprints.AddPermFingerprintViewController">
+   <children>
+      <Pane layoutY="4.0" prefHeight="58.0" prefWidth="655.0">
+         <children>
+            <Label layoutX="367.0" layoutY="23.0" prefHeight="22.0" prefWidth="51.0" text="User:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="bttn_back" fitHeight="35.0" fitWidth="44.0" layoutX="34.0" layoutY="12.0" onMouseClicked="#OnBackButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/back_arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="44.0" layoutX="103.0" layoutY="11.0" onMouseClicked="#OnSettingsButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="311.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="3.0" layoutY="66.0" prefHeight="425.0" prefWidth="648.0">
+         <children>
+            <Pane prefHeight="425.0" prefWidth="282.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e4e8" height="340.0" layoutX="20.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Label layoutX="32.0" layoutY="14.0" text="NOVA EMPREMTA PERMANENT:" underline="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="fingerPrintImage" fitHeight="318.0" fitWidth="220.0" layoutX="32.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../logos/EMPREMTA.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="408.0" fitWidth="423.0" layoutX="346.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/lock.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="textCode" layoutX="418.0" layoutY="66.0" prefHeight="34.0" prefWidth="177.0" promptText="...">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <Label layoutX="324.0" layoutY="69.0" text="NOM:">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonSave" layoutX="363.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#OnSaveButtonClicked" prefHeight="86.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(#00CCCC,#9AFFED);" text="GUARDAR">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../logos/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

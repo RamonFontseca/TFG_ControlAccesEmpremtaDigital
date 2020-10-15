@@ -1,6 +1,7 @@
 package Windows.Codes;
 
 import Controllers.CodesController;
+import Controllers.FilesController;
 import Controllers.PagesController;
 import Model.Code;
 import javafx.beans.Observable;
@@ -24,10 +25,12 @@ public class EnableDisableCodesViewController2 {
 
     private PagesController pagesController;
     private CodesController codesController;
+    private FilesController filesController;
 
     public void InitData(){
         pagesController = new PagesController();
         codesController = new CodesController();
+        filesController = new FilesController();
 
         tableCodes.setEditable(true);
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
@@ -68,6 +71,9 @@ public class EnableDisableCodesViewController2 {
             tableCodes.getSelectionModel().getSelectedItem().changeState();
             Code c = tableCodes.getSelectionModel().getSelectedItem();
             tableCodes.refresh();
+            codesController.deleteCode(c);
+            filesController.ClearFile(filesController.codesFilePath);
+            codesController.SaveCodes();
             codesController.updateCode(c);
         }
     }

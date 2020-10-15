@@ -102,7 +102,7 @@ public class AddTempCodeViewController extends AddPermCodeViewController{
 
     public void OnSaveButtonClicked(MouseEvent mouseEvent) {
         if (isFormatCodeValid(textCode.getText())){
-            if (codesController.AddNewPermCode(textCode.getText(), getRemainingUses())){
+            if (codesController.AddCode(textCode.getText(), getRemainingUses())){
                 textCode.clear();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");

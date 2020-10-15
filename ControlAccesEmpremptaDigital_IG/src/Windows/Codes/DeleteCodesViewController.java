@@ -1,6 +1,7 @@
 package Windows.Codes;
 
 import Controllers.CodesController;
+import Controllers.FilesController;
 import Controllers.PagesController;
 import Model.Code;
 import javafx.beans.Observable;
@@ -13,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class DeleteCodesViewController {
@@ -24,10 +27,12 @@ public class DeleteCodesViewController {
 
     private PagesController pagesController;
     private CodesController codesController;
+    private FilesController filesController;
 
     public void InitData(){
         pagesController = new PagesController();
         codesController = new CodesController();
+        filesController = new FilesController();
 
         tableCodes.setEditable(true);
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
@@ -66,6 +71,9 @@ public class DeleteCodesViewController {
             Code c = tableCodes.getSelectionModel().getSelectedItem();
             Code selectedItem = tableCodes.getSelectionModel().getSelectedItem();
             tableCodes.getItems().remove(selectedItem);
+            codesController.deleteCode(c);
+            filesController.ClearFile(filesController.codesFilePath);
+            codesController.SaveCodes();
             codesController.deleteCode(c);
             tableCodes.refresh();
         }

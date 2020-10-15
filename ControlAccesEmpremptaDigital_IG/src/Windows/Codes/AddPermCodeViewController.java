@@ -3,15 +3,10 @@ package Windows.Codes;
 import Controllers.CodesController;
 import Controllers.PagesController;
 import DataAcces.ConnectionDB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
-import java.awt.*;
 
 public class AddPermCodeViewController {
 
@@ -92,7 +87,7 @@ public class AddPermCodeViewController {
 
     public void OnSaveButtonClicked(MouseEvent mouseEvent) {
         if (isFormatCodeValid(textCode.getText())){
-            if (codesController.AddNewPermCode(textCode.getText(), getRemainingUses())){
+            if (codesController.AddCode(textCode.getText(), getRemainingUses())){
                 textCode.clear();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");
@@ -100,6 +95,9 @@ public class AddPermCodeViewController {
                 alert.setContentText("Code added!");
 
                 alert.showAndWait();
+                //codesController.SaveCodes();
+                codesController.SaveLastCode();
+
                 pagesController.goToScreen(mouseEvent, pagesController.page_CodesMenu);
             }
             else{

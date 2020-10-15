@@ -14,7 +14,8 @@ public class ConnectionDB {
     }
 
     private Statement connectToDB() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControlAcces","root","123456789abc");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControlAcces","root","admin");
+        conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;database=ControlAcces", "admin", "admin");
         return conn.createStatement();
     }
 
@@ -40,7 +41,7 @@ public class ConnectionDB {
         while (result.next()) {
             String codeNum = result.getString("codeNum");
             int remainingUses = result.getInt("RemainingUses");
-            int IsEnabled = result.getInt("IsEnabled");
+            boolean IsEnabled = result.getBoolean("IsEnabled");
 
             Code c = new Code(codeNum, remainingUses, IsEnabled);
             codesList.add(c);
@@ -48,24 +49,24 @@ public class ConnectionDB {
         return codesList;
     }
 
-    public void AddCode(Code c) throws SQLException {
+    public void AddCode(Code c) throws SQLException {/*
         Statement statement = connectToDB();
-        statement.executeUpdate("insert into Codes(CodeNum, RemainingUses, IsEnabled) values ('"+c.getCodeNum()+"','"+c.getRemainingUses()+"','1');");
+        statement.executeUpdate("insert into Codes(CodeNum, RemainingUses, IsEnabled) values ('"+c.getCodeNum()+"','"+c.getRemainingUses()+"','true');");
 
-        System.out.println(statement.toString());
+        System.out.println(statement.toString());*/
     }
 
-    public void UpdateCode(Code c) throws SQLException {
+    public void UpdateCode(Code c) throws SQLException {/*
         Statement statement = connectToDB();
         statement.executeUpdate(" update Codes set CodeNum = '" + c.getCodeNum() + "', RemainingUses = "+c.getRemainingUses()+", IsEnabled = "+c.getIsEnabledInteger() +" where CodeNum = '"+c.getCodeNum()+"' ");
 
-        System.out.println(statement.toString());
+        System.out.println(statement.toString());*/
     }
 
-    public void DeleteCode(Code c) throws SQLException {
+    public void DeleteCode(Code c) throws SQLException {/*
         Statement statement = connectToDB();
         statement.executeUpdate("delete from Codes where CodeNum = '"+c.getCodeNum()+"'");
 
-        System.out.println(statement.toString());
+        System.out.println(statement.toString());*/
     }
 }

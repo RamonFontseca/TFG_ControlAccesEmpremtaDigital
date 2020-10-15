@@ -18,12 +18,13 @@ public class UsersController {
     }
 
     private void InitData(){
-        conn = new ConnectionDB();
-        try {
-            usersList = conn.getUsers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        usersList = new ArrayList<User>();
+        LoadUsers();
+    }
+
+    private void LoadUsers() {
+        User u = new User("Admin", "1234");
+        usersList.add(u);
     }
 
     public boolean isValidUser(String name, String password) throws SQLException {
@@ -38,6 +39,4 @@ public class UsersController {
         }
         return trobat;
     }
-
-
 }

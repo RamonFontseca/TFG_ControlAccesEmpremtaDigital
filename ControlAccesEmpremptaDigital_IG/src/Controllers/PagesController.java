@@ -4,6 +4,7 @@ import Windows.Codes.AddTempCodeViewController;
 import Windows.Codes.DeleteCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController2;
+import Windows.Fingerprints.AddPermFingerprintViewController;
 import Windows.Settings.SettingsViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,6 +25,10 @@ public class PagesController {
     public String page_AddTempCode = "/Windows/Codes/AddTempCodeView.fxml";
     public String page_EnableDisableCodes = "/Windows/Codes/EnableDisableCodesView.fxml";
     public String page_DeleteCode = "/Windows/Codes/DeleteCodesView.fxml";
+    public String page_AddPermFingerprint = "/Windows/Fingerprints/AddPermFingerprintView.fxml";
+    public String page_AddTempFingerprint = "/Windows/Fingerprints/AddTempFingerprintView.fxml";
+    public String page_UpdateFingerprint = "/Windows/Fingerprints/UpdateFingerprintView.fxml";
+    public String page_DeleteFingerprint = "/Windows/Fingerprints/DeleteFingerprintView.fxml";
 
     String previousWindow;
 
@@ -131,6 +136,24 @@ public class PagesController {
         }
         DeleteCodesViewController enableDisableCodesViewController = loader.getController();
         enableDisableCodesViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToFingerScreenWithController(MouseEvent mouseEvent, String destinationPage, FingerprintsController fingerprintsController)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AddPermFingerprintViewController addPermFingerprintViewController = loader.getController();
+        addPermFingerprintViewController.InitData(fingerprintsController);
 
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
