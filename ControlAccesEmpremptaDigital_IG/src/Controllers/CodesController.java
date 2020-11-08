@@ -54,7 +54,7 @@ public class CodesController {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
-                System.out.println(data);
+                //System.out.println(data);
                 var a = data.split(",");
                 String part1 = a[0];
                 String part2 = a[1];

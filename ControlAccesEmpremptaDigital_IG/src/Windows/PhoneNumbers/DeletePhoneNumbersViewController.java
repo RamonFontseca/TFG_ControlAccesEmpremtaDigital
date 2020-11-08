@@ -25,12 +25,10 @@ public class DeletePhoneNumbersViewController {
     @FXML private TableColumn<PhoneNumber, String> columnPhoneNumber;
     @FXML private TableColumn<PhoneNumber, String> columnState;
 
-    private PagesController pagesController;
+    private PagesController pagesController = Singleton.GetPagesController();
     private PhoneNumbersController phoneNumbersController = Singleton.GetPhoneNumbersController();
 
     public void InitData(){
-        pagesController = new PagesController();
-
         tablePhoneNumbers.setEditable(true);
         tablePhoneNumbers.setStyle( "-fx-alignment: CENTER;");
         tablePhoneNumbers.setStyle("-fx-cell-size: 50px");

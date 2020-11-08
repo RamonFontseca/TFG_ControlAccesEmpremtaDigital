@@ -8,6 +8,7 @@ public class Fingerprint {
     private boolean enabled;
     private byte[] fingerprintImage;
     private DPFPTemplate template;
+    private String status;
 
     public Fingerprint()
     {
@@ -25,6 +26,38 @@ public class Fingerprint {
         this.enabled = fp.enabled;
         this.fingerprintImage = fp.fingerprintImage;
         this.template = fp.template;
+    }
+
+    public Fingerprint(String name, int remainingUses, boolean enabled, DPFPTemplate template)
+    {
+        this.name = name;
+        this.remainingUses = remainingUses;
+        this.enabled = enabled;
+        this.template = template;
+    }
+
+    public void changeState()
+    {
+        this.enabled = !this.enabled;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getRemainingUses(){
+        return remainingUses;
+    }
+
+    public boolean getEnabled()
+    {
+        return enabled;
+    }
+
+    public String getStatus()
+    {
+        if (this.enabled) return "HABILITADA";
+        else return "DESHABILITADA";
     }
 
     public DPFPTemplate GetTemplate()
@@ -47,4 +80,13 @@ public class Fingerprint {
         this.template = template;
     }
 
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object == null) return false;
+        if (object.getClass() != this.getClass()) return false;
+
+        final Fingerprint fp = (Fingerprint) object;
+        return (this.name.equals(fp.name) && this.enabled == fp.enabled && fp.remainingUses == fp.remainingUses);
+    }
 }

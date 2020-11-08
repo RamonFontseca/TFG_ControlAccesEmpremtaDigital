@@ -6,11 +6,16 @@ import Windows.Codes.DeleteCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController2;
 import Windows.Fingerprints.AddPermFingerprintViewController;
+import Windows.Fingerprints.AddTempFingerprintViewController;
+import Windows.Fingerprints.DeleteFingerprintsViewController;
+import Windows.Fingerprints.EnableDisableFingerprintsViewController;
 import Windows.PhoneNumbers.DeletePhoneNumbersViewController;
 import Windows.PhoneNumbers.EnableDisablePhoneNumbersViewController;
 import Windows.Settings.ConfigureLanguageViewController;
 import Windows.Settings.ConfigureNotificationsViewController;
 import Windows.Settings.SettingsViewController;
+import Windows.Stadistics.CodeStadisticsViewController;
+import Windows.Stadistics.UserUsagesStadisticsViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -32,14 +37,17 @@ public class PagesController {
     public String page_DeleteCode = "/Windows/Codes/DeleteCodesView.fxml";
     public String page_AddPermFingerprint = "/Windows/Fingerprints/AddPermFingerprintView.fxml";
     public String page_AddTempFingerprint = "/Windows/Fingerprints/AddTempFingerprintView.fxml";
-    public String page_UpdateFingerprint = "/Windows/Fingerprints/UpdateFingerprintView.fxml";
-    public String page_DeleteFingerprint = "/Windows/Fingerprints/DeleteFingerprintView.fxml";
+    public String page_EnableDisableFingerprints = "/Windows/Fingerprints/EnableDisableFingerprintsView.fxml";
+    public String page_DeleteFingerprint = "/Windows/Fingerprints/DeleteFingerprintsView.fxml";
     public String page_AddPhoneNumber = "/Windows/PhoneNumbers/AddPhoneNumberView.fxml";
     public String page_PhoneNumbersMenu = "/Windows/PhoneNumbers/PhoneNumbersMenuView.fxml";
     public String page_EnableDisablePhoneNumbers = "/Windows/PhoneNumbers/EnableDisablePhoneNumbersView.fxml";
     public String page_DeletePhoneNumbers =  "/Windows/PhoneNumbers/DeletePhoneNumbersView.fxml";
     public String page_ConfigureLanguage = "/Windows/Settings/ConfigureLanguageView.fxml";
     public String page_ConfigureNotifications = "/Windows/Settings/ConfigureNotificationsView.fxml";
+    public String page_StadisticsMenu = "/Windows/Stadistics/StadisticsMenuView.fxml";
+    public String page_StadisicsCodesUsages = "/Windows/Stadistics/CodeStadisticsView.fxml";
+    public String page_StadisicsUagesPerUSer = "/Windows/Stadistics/UserUsagesStadisticsView.fxml";
 
     String previousWindow;
 
@@ -172,6 +180,61 @@ public class PagesController {
         window.show();
     }
 
+    public void goToTempFingerScreenWithController(MouseEvent mouseEvent, String destinationPage, FingerprintsController fingerprintsController)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AddTempFingerprintViewController addTempFingerprintViewController = loader.getController();
+        addTempFingerprintViewController.InitData(fingerprintsController);
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToEnableDisableFingerprintsScreenConstructing(MouseEvent mouseEvent, String destinationPage)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        EnableDisableFingerprintsViewController enableDisableFingerprintsViewController = loader.getController();
+        enableDisableFingerprintsViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToDeleteFingerprintsScreenConstructing(MouseEvent mouseEvent, String destinationPage)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeleteFingerprintsViewController deleteFingerprintsViewController = loader.getController();
+        deleteFingerprintsViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+
     public void goToEnableDisablePhoneNumbersScreenConstructing(MouseEvent mouseEvent, String destinationPage) {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
         Parent root = null;
@@ -233,6 +296,43 @@ public class PagesController {
         }
         ConfigureNotificationsViewController configureNotificationsViewController = loader.getController();
         configureNotificationsViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToCodeStadisticsScreenConstructing(MouseEvent mouseEvent, String destinationPage)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        CodeStadisticsViewController codeStadisticsViewController = loader.getController();
+        codeStadisticsViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToUserStadisticsScreenConstructing(MouseEvent mouseEvent, String destinationPage)
+    {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        UserUsagesStadisticsViewController userUsagesStadisticsViewController = loader.getController();
+        userUsagesStadisticsViewController.InitData();
 
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();

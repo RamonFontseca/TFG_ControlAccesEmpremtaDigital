@@ -3,6 +3,7 @@ package Windows.MainMenu;
 import Controllers.CodesController;
 import Controllers.PagesController;
 import Model.Code;
+import Singleton.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,8 +20,8 @@ public class MainMenuViewController {
 
     @FXML private Label username;
 
-    private PagesController pagesController = new PagesController();
-    private CodesController codesController = new CodesController();
+    private PagesController pagesController = Singleton.GetPagesController();
+    private CodesController codesController = Singleton.GetCodesController();
 
     public void initData(String username) {
         this.username.setText(username);
@@ -46,6 +47,9 @@ public class MainMenuViewController {
     }
      */
 
+    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
+        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_MainMenu);
+    }
 
     public void OnManageCodesButtonClick(MouseEvent mouseEvent) {
         pagesController.goToScreen(mouseEvent, pagesController.page_CodesMenu);
@@ -55,9 +59,9 @@ public class MainMenuViewController {
         pagesController.goToScreen(mouseEvent, pagesController.page_PhoneNumbersMenu);
     }
 
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_MainMenu);
+    public void OnManageStadisticsButtonClicked(MouseEvent mouseEvent)
+    {
+        pagesController.goToScreen(mouseEvent, pagesController.page_StadisticsMenu);
     }
 
     public void OnManageFingerprintsButtonClicked(MouseEvent mouseEvent) {

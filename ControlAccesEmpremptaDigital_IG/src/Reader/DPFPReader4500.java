@@ -14,6 +14,7 @@ import com.digitalpersona.onetouch.readers.DPFPReaderDescription;
 import com.digitalpersona.onetouch.readers.DPFPReadersCollection;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,6 +86,7 @@ public class DPFPReader4500 {
 
                 // Add FeatureSet to Enrollment
                 enrollment.addFeatures(featureSet);
+                System.out.printf("Escaneja l'emprempta " + enrollment.getFeaturesNeeded() + " cops.");
             }
             catch (DPFPImageQualityException e) {
                 System.out.printf("Failed to enroll the finger.\n");
@@ -137,6 +139,7 @@ public class DPFPReader4500 {
 
                 // Add FeatureSet to Enrollment
                 enrollment.addFeatures(featureSet);
+
             }
             catch (DPFPImageQualityException e) {
                 System.out.printf("Failed to enroll the finger.\n");
@@ -274,5 +277,29 @@ public class DPFPReader4500 {
             byte[] res  = s.toByteArray();
             s.close(); //especially if you are using a different output stream.*/
         }
+    }
+
+    private void showAlertInfoMessage(String error) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(error);
+
+        alert.show();
+    }
+
+    private Alert CreateAlertInfoMessage(String error)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        //alert.setHeaderText(null);
+        alert.setContentText(error);
+
+        return alert;
+    }
+
+    private void SetAlertContent(Alert alert, String error)
+    {
+        alert.setContentText(error);
     }
 }

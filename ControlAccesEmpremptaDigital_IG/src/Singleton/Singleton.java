@@ -6,9 +6,28 @@ import java.nio.file.Files;
 
 public class Singleton {
 
+    // FingerprintsController
+    private static FingerprintsController fingerprintsController;
+    public static FingerprintsController GetFingerprintsController(){
+        if (fingerprintsController == null)
+        {
+            fingerprintsController = new FingerprintsController();
+        }
+        return fingerprintsController;
+    }
+
+    // CodesController
+    private static CodesController codesController;
+    public static CodesController GetCodesController(){
+        if (codesController == null)
+        {
+            codesController = new CodesController();
+        }
+        return codesController;
+    }
+
     // PhoneNumbersController
     private static PhoneNumbersController phoneNumbersController;
-
     public static PhoneNumbersController GetPhoneNumbersController(){
         if (phoneNumbersController == null)
         {
@@ -55,6 +74,16 @@ public class Singleton {
             filesController = new FilesController();
         }
         return filesController;
+    }
+
+    // StadisticsController
+    private static StadisticsController stadisticsController;
+    public static StadisticsController GetStadisticsController(){
+        if (stadisticsController == null)
+        {
+            stadisticsController = new StadisticsController();
+        }
+        return stadisticsController;
     }
 
 }

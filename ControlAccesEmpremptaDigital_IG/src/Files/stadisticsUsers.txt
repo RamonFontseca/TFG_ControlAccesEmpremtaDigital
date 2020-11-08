@@ -1,0 +1,5 @@
+Usuari1,25
+Usuari2,22
+Usuari3,15
+Usuari4,11
+Usuari5,2

@@ -10,6 +10,9 @@ public class FilesController {
     public String usersFilePath = "src/Files/users.txt";
     public String languagesFilePath = "src/Files/languages.txt";
     public String notificationsFilePath = "src/Files/notificationsConfiguration.txt";
+    public String stadisticsCodesFilePath = "src/Files/stadisticsCodes.txt";
+    public String stadisticsUsersFilePath = "src/Files/stadisticsUsers.txt";
+    public String phoneNumbersFilePath = "src/Files/phoneNumbers.txt";
 
     public FilesController()
     {

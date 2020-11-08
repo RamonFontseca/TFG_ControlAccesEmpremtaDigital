@@ -4,6 +4,7 @@ import Controllers.CodesController;
 import Controllers.FilesController;
 import Controllers.PagesController;
 import Model.Code;
+import Singleton.Singleton;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,20 +25,22 @@ public class EnableDisableCodesViewController {
     @FXML private TableColumn<Code, String> columnState;
 
     private PagesController pagesController;
-    private CodesController codesController;
+    CodesController codesController = Singleton.GetCodesController();
     private FilesController filesController;
 
     public void InitData(){
         pagesController = new PagesController();
-        codesController = new CodesController();
+
         filesController = new FilesController();
 
         tableCodes.setEditable(true);
         tableCodes.setFixedCellSize(40.0);
         columnCode.setStyle( "-fx-alignment: CENTER;");
+        columnCode.setStyle("-fx-cell-size: 50px");
+        tableCodes.setStyle("-fx-font-size: 20px");
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
         columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
-        columnState.setCellValueFactory(new PropertyValueFactory<>("IsEnabled"));
+        columnState.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnCode.setResizable(false);
         columnUses.setResizable(false);
         columnState.setResizable(false);

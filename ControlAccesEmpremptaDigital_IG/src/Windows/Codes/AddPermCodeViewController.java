@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 public class AddPermCodeViewController {
 
     PagesController pagesController = new PagesController();
-    CodesController codesController = new CodesController();
+    CodesController codesController = Singleton.GetCodesController();
 
     @FXML private TextField textCode;
 

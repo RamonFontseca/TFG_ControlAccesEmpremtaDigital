@@ -18,7 +18,7 @@ public class FingerprintsMenuViewController {
     }
 
     public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_Settings);
+        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_FingerprintsMenu);
     }
 
     public void OnBackButtonClicked(MouseEvent mouseEvent) {
@@ -28,15 +28,19 @@ public class FingerprintsMenuViewController {
     public void OnAddPermFingerprintClicked(MouseEvent mouseEvent)
     {
         pagesController.goToFingerScreenWithController(mouseEvent, pagesController.page_AddPermFingerprint, fingerprintsController);
+    }
 
+    public void OnAddTempFingerprintClicked(MouseEvent mouseEvent)
+    {
+        pagesController.goToTempFingerScreenWithController(mouseEvent, pagesController.page_AddTempFingerprint, fingerprintsController);
     }
 
     public void OnUpdateFingerprintClicked(MouseEvent mouseEvent) {
+        pagesController.goToEnableDisableFingerprintsScreenConstructing(mouseEvent, pagesController.page_EnableDisableFingerprints);
     }
 
     public void OnDeleteFingerprintClicked(MouseEvent mouseEvent) {
+        pagesController.goToDeleteFingerprintsScreenConstructing(mouseEvent, pagesController.page_DeleteFingerprint);
     }
 
-    public void OnAddTempFingerprintClicked(MouseEvent mouseEvent) {
-    }
 }

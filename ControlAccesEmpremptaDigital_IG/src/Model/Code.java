@@ -4,6 +4,7 @@ public class Code {
     private String codeNum;
     private int remainingUses;
     private boolean isEnabled;
+    private String status;
 
     public Code() {
         this.codeNum = null;

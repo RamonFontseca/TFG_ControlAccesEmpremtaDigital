@@ -11,6 +11,7 @@ public class SettingsViewController {
     String previousWindow;
 
     public void initData(String sourceWindow) {
+
         this.previousWindow = sourceWindow;
     }
 

@@ -4,6 +4,7 @@ import Controllers.FingerprintsController;
 import Controllers.PagesController;
 import Model.Fingerprint;
 import Reader.DPFPReader4500;
+import Singleton.Singleton;
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.capture.DPFPCapture;
 import com.digitalpersona.onetouch.capture.DPFPCapturePriority;
@@ -39,8 +40,8 @@ import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
 
 public class AddPermFingerprintViewController {
-    FingerprintsController fingerprintsController = new FingerprintsController();
-    PagesController pagesController = new PagesController();
+    FingerprintsController fingerprintsController = Singleton.GetFingerprintsController();
+    PagesController pagesController = Singleton.GetPagesController();
     DPFPReader4500 reader = new DPFPReader4500();
 
     private DPFPFeatureSet dpfpFeatureSet;
@@ -56,7 +57,7 @@ public class AddPermFingerprintViewController {
         bttnCapture.setDisable(false);
         valid = false;
 
-        this.fingerprintsController = fpController;
+        //this.fingerprintsController = fpController;
         //InitFingerprintReader();
         reader.InitReader();
         dpfpFeatureSet = null;/*
@@ -66,7 +67,17 @@ public class AddPermFingerprintViewController {
         fp.SetTemplate(template);
         fp.SetName("Ramon");
         fingerprintsController.fingerPrintList.add(fp);*/
+        fingerPrintImage.setOpacity(0.0);
     }
+
+    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
+        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_FingerprintsMenu);
+    }
+
+    public void OnBackButtonClicked(MouseEvent mouseEvent) {
+        pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
+    }
+
 
     public void InitFingerprintReader()
     {
@@ -237,13 +248,6 @@ public class AddPermFingerprintViewController {
         }
     }
 
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-    }
-
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
-    }
-
     public void OnCaptureButtonClicked(MouseEvent mouseEvent) {
 
        /*
@@ -253,9 +257,9 @@ public class AddPermFingerprintViewController {
         SI L'EMPREMTA NO EXISTEIX -> GUARDAR L'EMPREMTA LLEGIDA PER PRIMER COP (4 TIMES)
 
         */
-
         if (reader == null || reader.GetActiveReader() == null) {
             System.out.println("Reader no disponible");
+            showAlertInfoMessage("No hi ha cap lector disponible");
             return;
         }
         if (fingerprintsController.fingerPrintList == null)
@@ -301,6 +305,7 @@ public class AddPermFingerprintViewController {
 
                 showAlertInfoMessage("Fingerprint saved!");
                 bttnCapture.setDisable(true);
+                fingerPrintImage.setOpacity(1.0);
                 valid = true;
             }
             else {

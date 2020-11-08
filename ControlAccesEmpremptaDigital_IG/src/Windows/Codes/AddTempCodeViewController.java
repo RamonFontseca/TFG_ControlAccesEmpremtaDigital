@@ -3,6 +3,7 @@ package Windows.Codes;
 import Controllers.CodesController;
 import Controllers.PagesController;
 import DataAcces.ConnectionDB;
+import Singleton.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 public class AddTempCodeViewController extends AddPermCodeViewController{
 
     private PagesController pagesController = new PagesController();
-    private CodesController codesController = new CodesController();
+    CodesController codesController = Singleton.GetCodesController();
     private int maxLenght = 10;
 
     @FXML private TextField textCode;
