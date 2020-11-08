@@ -3,6 +3,7 @@ package Windows.Codes;
 import Controllers.CodesController;
 import Controllers.PagesController;
 import DataAcces.ConnectionDB;
+import Singleton.Singleton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

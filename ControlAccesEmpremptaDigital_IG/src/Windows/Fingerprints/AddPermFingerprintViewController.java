@@ -2,6 +2,8 @@ package Windows.Fingerprints;
 
 import Controllers.FingerprintsController;
 import Controllers.PagesController;
+import Model.Fingerprint;
+import Reader.DPFPReader4500;
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.capture.DPFPCapture;
 import com.digitalpersona.onetouch.capture.DPFPCapturePriority;
@@ -14,9 +16,14 @@ import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import com.digitalpersona.onetouch.readers.DPFPReaderDescription;
 import com.digitalpersona.onetouch.readers.DPFPReadersCollection;
+import com.digitalpersona.onetouch.verification.DPFPVerification;
+import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
 import com.sun.javafx.fxml.builder.JavaFXImageBuilder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +33,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
@@ -33,13 +41,31 @@ import javax.imageio.ImageIO;
 public class AddPermFingerprintViewController {
     FingerprintsController fingerprintsController = new FingerprintsController();
     PagesController pagesController = new PagesController();
+    DPFPReader4500 reader = new DPFPReader4500();
+
+    private DPFPFeatureSet dpfpFeatureSet;
+
+    private boolean valid;
 
     @FXML private ImageView fingerPrintImage;
+    @FXML private Button bttnCapture;
+    @FXML private TextField textCode;
 
-    public void InitData(FingerprintsController fp)
+    public void InitData(FingerprintsController fpController)
     {
-        this.fingerprintsController = fp;
-        InitFingerprintReader();
+        bttnCapture.setDisable(false);
+        valid = false;
+
+        this.fingerprintsController = fpController;
+        //InitFingerprintReader();
+        reader.InitReader();
+        dpfpFeatureSet = null;/*
+        DPFPTemplate template = reader.ReadFingerPrinters();
+        Fingerprint fp = new Fingerprint();
+        fp.SetRemainingUses(10);
+        fp.SetTemplate(template);
+        fp.SetName("Ramon");
+        fingerprintsController.fingerPrintList.add(fp);*/
     }
 
     public void InitFingerprintReader()
@@ -69,26 +95,27 @@ public class AddPermFingerprintViewController {
             {
                 try {
                     sample = getSample(activeReader,
-                            String.format("Scan your finger (%d remaining)\n", enrollment.getFeaturesNeeded()));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (sample == null)
-                    continue;
+                        String.format("Scan your finger (%d remaining)\n", enrollment.getFeaturesNeeded()));
 
-                DPFPFeatureSet featureSet;
-                try {
-                    featureSet = featureExtractor.createFeatureSet(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
-                } catch (DPFPImageQualityException e) {
-                    System.out.printf("Bad image quality: \"%s\". Try again. \n", e.getCaptureFeedback().toString());
-                    continue;
-                }
+                    if (sample == null)
+                        continue;
 
-                try {
+                    DPFPFeatureSet featureSet;
+                    try {
+                        featureSet = featureExtractor.createFeatureSet(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
+                    } catch (DPFPImageQualityException e) {
+                        System.out.printf("Bad image quality: \"%s\". Try again. \n", e.getCaptureFeedback().toString());
+                        continue;
+                    }
+
                     enrollment.addFeatures(featureSet);
+
                 } catch (DPFPImageQualityException e) {
-                    e.printStackTrace();
+                    System.out.printf("Failed to enroll the finger.\n");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
+
             }
             DPFPTemplate template = enrollment.getTemplate();
             var image = convertSampleToBitmap(sample);
@@ -180,6 +207,34 @@ public class AddPermFingerprintViewController {
     }
 
     public void OnSaveButtonClicked(MouseEvent mouseEvent) {
+        /*try {
+            DPFPSample sample = getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
+            if (sample == null)
+                throw new Exception();
+
+            DPFPFeatureExtraction featureExtractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
+            DPFPFeatureSet featureSet = featureExtractor.createFeatureSet(sample, DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
+
+            boolean finded = false;
+            for(Fingerprint fp: fingerprintsController.fingerPrintList)
+            {
+                DPFPVerificationResult result = reader.VerifyFingerprint(fp.GetTemplate(), featureSet);
+                if (result.isVerified()){
+                    System.out.println("L'empremta existeix");
+                    finded = true;
+                    break;
+                }
+            }
+
+            if (!finded) System.out.println("L'empremta no s'ha trobat");
+
+        } catch (Exception e) {
+            System.out.printf("Failed to perform verification.");
+        }*/
+        if (valid)
+        {
+            pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
+        }
     }
 
     public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
@@ -187,5 +242,94 @@ public class AddPermFingerprintViewController {
 
     public void OnBackButtonClicked(MouseEvent mouseEvent) {
         pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
+    }
+
+    public void OnCaptureButtonClicked(MouseEvent mouseEvent) {
+
+       /*
+        LA IDEA PER FER-HO BÉ ES LA SEGUENT:
+        FER SEGUIT EL CAPTURAR (4 TIMES) I EL VERIFY (1 TIME)
+        SI L'EMPREMTA JA EXISTEIX -> NO FER RES I NO GUARDAR
+        SI L'EMPREMTA NO EXISTEIX -> GUARDAR L'EMPREMTA LLEGIDA PER PRIMER COP (4 TIMES)
+
+        */
+
+        if (reader == null || reader.GetActiveReader() == null) {
+            System.out.println("Reader no disponible");
+            return;
+        }
+        if (fingerprintsController.fingerPrintList == null)
+            fingerprintsController.fingerPrintList = new ArrayList<>();
+
+        // FINGERPRINT READ
+        try {
+            DPFPTemplate template = reader.ReadFingerPrinters();
+            /*dpfpFeatureSet = reader.ReadFingerPrinters2();
+            DPFPTemplate template = reader.ConvertFeatureSetToTemplate(dpfpFeatureSet);*/
+
+            Fingerprint fp = new Fingerprint();
+            fp.SetRemainingUses(10);
+            fp.SetTemplate(template);
+            if (textCode.getText() != null && textCode.getText() != "") {
+                fp.SetName(textCode.getText());
+            } else fp.SetName("NomIndefinit");
+
+        // VERITIFACTION
+        //try {
+            DPFPSample sample = getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
+            if (sample == null)
+                throw new Exception();
+
+            DPFPFeatureExtraction featureExtractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
+            DPFPFeatureSet featureSet = featureExtractor.createFeatureSet(sample, DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
+
+            boolean finded = false;
+            for(Fingerprint f: fingerprintsController.fingerPrintList)
+            {
+                DPFPVerificationResult result = reader.VerifyFingerprint(f.GetTemplate(), featureSet);
+                if (result.isVerified()){
+                    System.out.println("L'empremta existeix");
+                    finded = true;
+                    break;
+                }
+            }
+
+            // SHOW RESULT
+            if (!finded) {
+                System.out.println("L'empremta no s'ha trobat");
+                fingerprintsController.fingerPrintList.add(fp);
+
+                showAlertInfoMessage("Fingerprint saved!");
+                bttnCapture.setDisable(true);
+                valid = true;
+            }
+            else {
+                showAlertInfoMessage("Fingerprint already exists!");
+                // Capture button enabled false
+                valid = false;
+            }
+
+        } catch (Exception e) {
+            System.out.printf("Failed to perform verification.");
+            showAlertErrorMessage("Failed to perform verification.");
+        }
+    }
+
+    private void showAlertErrorMessage(String error) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(error);
+
+        alert.showAndWait();
+    }
+
+    private void showAlertInfoMessage(String error) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(error);
+
+        alert.showAndWait();
     }
 }

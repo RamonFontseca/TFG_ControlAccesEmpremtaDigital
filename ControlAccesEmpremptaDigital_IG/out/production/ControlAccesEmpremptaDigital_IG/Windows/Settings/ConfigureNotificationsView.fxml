@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Settings.ConfigureNotificationsViewController">
+   <children>
+      <Pane layoutY="4.0" prefHeight="58.0" prefWidth="655.0">
+         <children>
+            <Label layoutX="367.0" layoutY="23.0" prefHeight="22.0" prefWidth="51.0" text="User:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="bttn_back" fitHeight="35.0" fitWidth="44.0" layoutX="34.0" layoutY="12.0" onMouseClicked="#OnBackButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/back_arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="44.0" layoutX="103.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="311.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="3.0" layoutY="66.0" prefHeight="425.0" prefWidth="648.0">
+         <children>
+            <ImageView fitHeight="408.0" fitWidth="423.0" layoutX="346.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../logos/lock.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="25.0" layoutY="49.0" prefHeight="58.0" prefWidth="604.0">
+               <children>
+                  <Rectangle fx:id="bttnSendNotif" arcHeight="5.0" arcWidth="5.0" fill="#eeeeee" height="58.0" onMouseClicked="#OnSendNotifClicked" stroke="BLACK" strokeType="INSIDE" width="604.0" />
+                  <Text layoutX="14.0" layoutY="37.0" onMouseClicked="#OnSendNotifClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="ENVIAMENT DE NOTIFICACIONS" wrappingWidth="300.13427734375">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="bttnSendNotificationsState" layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#OnSendNotifClicked" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: red;" />
+                  <Text fx:id="textNotifState" layoutX="439.0" layoutY="36.0" onMouseClicked="#OnSendNotifClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="DESACTIVAT" wrappingWidth="117.13427734375">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,3 @@
+CAT,CATALÀ,true
+ANG,ANGLÈS,false
+CAST,CASTELLÀ,false

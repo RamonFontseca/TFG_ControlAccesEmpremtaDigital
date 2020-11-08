@@ -8,6 +8,8 @@ public class FilesController {
 
     public String codesFilePath = "src/Files/codes.txt";
     public String usersFilePath = "src/Files/users.txt";
+    public String languagesFilePath = "src/Files/languages.txt";
+    public String notificationsFilePath = "src/Files/notificationsConfiguration.txt";
 
     public FilesController()
     {

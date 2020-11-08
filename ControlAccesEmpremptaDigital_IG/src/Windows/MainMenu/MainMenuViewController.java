@@ -52,7 +52,7 @@ public class MainMenuViewController {
     }
 
     public void OnManageNotificationsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_CodesMenu);
+        pagesController.goToScreen(mouseEvent, pagesController.page_PhoneNumbersMenu);
     }
 
 

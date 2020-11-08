@@ -1,10 +1,15 @@
 package Controllers;
 
+import Singleton.Singleton;
 import Windows.Codes.AddTempCodeViewController;
 import Windows.Codes.DeleteCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController;
 import Windows.Codes.EnableDisableCodesViewController2;
 import Windows.Fingerprints.AddPermFingerprintViewController;
+import Windows.PhoneNumbers.DeletePhoneNumbersViewController;
+import Windows.PhoneNumbers.EnableDisablePhoneNumbersViewController;
+import Windows.Settings.ConfigureLanguageViewController;
+import Windows.Settings.ConfigureNotificationsViewController;
 import Windows.Settings.SettingsViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +34,12 @@ public class PagesController {
     public String page_AddTempFingerprint = "/Windows/Fingerprints/AddTempFingerprintView.fxml";
     public String page_UpdateFingerprint = "/Windows/Fingerprints/UpdateFingerprintView.fxml";
     public String page_DeleteFingerprint = "/Windows/Fingerprints/DeleteFingerprintView.fxml";
+    public String page_AddPhoneNumber = "/Windows/PhoneNumbers/AddPhoneNumberView.fxml";
+    public String page_PhoneNumbersMenu = "/Windows/PhoneNumbers/PhoneNumbersMenuView.fxml";
+    public String page_EnableDisablePhoneNumbers = "/Windows/PhoneNumbers/EnableDisablePhoneNumbersView.fxml";
+    public String page_DeletePhoneNumbers =  "/Windows/PhoneNumbers/DeletePhoneNumbersView.fxml";
+    public String page_ConfigureLanguage = "/Windows/Settings/ConfigureLanguageView.fxml";
+    public String page_ConfigureNotifications = "/Windows/Settings/ConfigureNotificationsView.fxml";
 
     String previousWindow;
 
@@ -134,8 +145,8 @@ public class PagesController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DeleteCodesViewController enableDisableCodesViewController = loader.getController();
-        enableDisableCodesViewController.InitData();
+        DeleteCodesViewController deleteCodesViewController = loader.getController();
+        deleteCodesViewController.InitData();
 
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -155,6 +166,110 @@ public class PagesController {
         AddPermFingerprintViewController addPermFingerprintViewController = loader.getController();
         addPermFingerprintViewController.InitData(fingerprintsController);
 
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToEnableDisablePhoneNumbersScreenConstructing(MouseEvent mouseEvent, String destinationPage) {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        EnableDisablePhoneNumbersViewController enableDisablePhoneNumbersViewController = loader.getController();
+        enableDisablePhoneNumbersViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToDeletePhoneNumbersScreenConstructing(MouseEvent mouseEvent, String page_deleteCode) {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(page_deleteCode));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeletePhoneNumbersViewController deletePhoneNumbersViewController = loader.getController();
+        deletePhoneNumbersViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToConfigureLanguageScreenConstructing(MouseEvent mouseEvent, String destinationPage) {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ConfigureLanguageViewController configureLanguageViewController = loader.getController();
+        configureLanguageViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToConfigureNotificationsScreenConstructing(MouseEvent mouseEvent, String destinationPage) {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ConfigureNotificationsViewController configureNotificationsViewController = loader.getController();
+        configureNotificationsViewController.InitData();
+
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void goToScreenBona(MouseEvent mouseEvent, String destinationPage, Singleton singleton)
+    {
+        FXMLLoader loader =  GetLoader(destinationPage);
+        Parent root = GetParent(loader);
+
+        /* controller = loader.getController();
+        controller.SetSingleton(singleton);
+        addPermFingerprintViewController.InitData(fingerprintsController);*/
+
+        ChangeScene(mouseEvent, root);
+    }
+
+    private FXMLLoader GetLoader(String destinationPage)
+    {
+        return new FXMLLoader(getClass().getResource(destinationPage));
+    }
+
+    private Parent GetParent(FXMLLoader loader)
+    {
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return root;
+    }
+
+    private void ChangeScene(MouseEvent mouseEvent, Parent root)
+    {
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         window.setScene(scene);

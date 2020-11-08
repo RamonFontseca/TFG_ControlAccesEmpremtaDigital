@@ -73,7 +73,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button fx:id="buttonSave" layoutX="363.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#OnSaveButtonClicked" prefHeight="86.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(#00CCCC,#9AFFED);" text="GUARDAR">
+            <Button fx:id="buttonSave" layoutX="364.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#OnSaveButtonClicked" prefHeight="86.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(#00CCCC,#9AFFED);" text="GUARDAR">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,9 +82,10 @@
                   </ImageView>
                </graphic>
                <font>
-                  <Font size="25.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
+            <Button fx:id="bttnCapture" layoutX="356.0" layoutY="252.0" mnemonicParsing="false" onMouseClicked="#OnCaptureButtonClicked" prefHeight="34.0" prefWidth="210.0" text="Capturar" />
          </children>
       </Pane>
    </children>
