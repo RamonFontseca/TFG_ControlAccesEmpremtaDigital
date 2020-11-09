@@ -7,6 +7,7 @@ import Controllers.PagesController;
 import Model.Code;
 import Model.Fingerprint;
 import Singleton.Singleton;
+import Windows.Base.BaseFingerprintsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,18 +20,16 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class EnableDisableFingerprintsViewController {
+public class EnableDisableFingerprintsViewController extends BaseFingerprintsController {
 
     @FXML private TableView<Fingerprint> tableCodes;
     @FXML private TableColumn<Fingerprint, String> columnCode;
     @FXML private TableColumn<Fingerprint, Integer> columnUses;
     @FXML private TableColumn<Fingerprint, String> columnState;
 
-    private PagesController pagesController = Singleton.GetPagesController();
-    private FingerprintsController fingerprintsController = Singleton.GetFingerprintsController();
-    private FilesController filesController = Singleton.GetFilesController();
-
     public void InitData(){
+        InitializeUserLabel();
+
         tableCodes.setEditable(true);
         tableCodes.setFixedCellSize(40.0);
         columnCode.setStyle( "-fx-alignment: CENTER;");
@@ -43,25 +42,13 @@ public class EnableDisableFingerprintsViewController {
         columnUses.setResizable(false);
         columnState.setResizable(false);
 
-
         PopulateListView();
     }
 
-    private void PopulateListView() {
+    @Override
+    protected void PopulateListView() {
         ArrayList<Fingerprint> fingerprintsList = fingerprintsController.getFingerprints();
-        //obcode.addAll(codsList);
         tableCodes.getItems().setAll(fingerprintsList);
-    }
-
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
-    }
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings,pagesController.page_EnableDisableFingerprints);
-    }
-
-    public void OnSaveButtonClicked(MouseEvent mouseEvent) {
     }
 
     public void OnTableClick(MouseEvent mouseEvent) {

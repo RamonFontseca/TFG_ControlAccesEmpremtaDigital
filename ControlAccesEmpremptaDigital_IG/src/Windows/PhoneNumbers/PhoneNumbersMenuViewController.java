@@ -1,9 +1,10 @@
 package Windows.PhoneNumbers;
 
 import Controllers.PagesController;
+import Windows.Base.BaseController;
 import javafx.scene.input.MouseEvent;
 
-public class PhoneNumbersMenuViewController {
+public class PhoneNumbersMenuViewController extends BaseController {
 
     PagesController pagesController = new PagesController();
 

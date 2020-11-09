@@ -5,6 +5,7 @@ import Controllers.PagesController;
 import Model.Language;
 import Model.PhoneNumber;
 import Singleton.Singleton;
+import Windows.Base.BaseController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,9 +18,8 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class ConfigureLanguageViewController {
+public class ConfigureLanguageViewController extends BaseController {
 
-    PagesController pagesController = Singleton.GetPagesController();
     LanguagesController languagesController = Singleton.GetLanguagesController();
 
     @FXML private TableView<Language> tableLanguages;
@@ -27,7 +27,8 @@ public class ConfigureLanguageViewController {
     @FXML private TableColumn<Language, String> columnState;
 
     public void InitData(){
-        pagesController = new PagesController();
+        InitializeUserLabel();
+
 
         tableLanguages.setEditable(true);
         tableLanguages.setFixedCellSize(40.0);
@@ -42,22 +43,22 @@ public class ConfigureLanguageViewController {
         PopulateListView();
     }
 
-    private void PopulateListView() {
+    @Override
+    protected void PopulateListView() {
         ArrayList<Language> languagesList = languagesController.GetLanguages();
-        //obcode.addAll(codsList);
         tableLanguages.getItems().setAll(languagesList);
     }
 
+    @Override
     public void OnBackButtonClicked(MouseEvent mouseEvent) {
         pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings, pagesController.page_MainMenu);
     }
 
+    @Override
     public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
         pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings,pagesController.page_ConfigureLanguage);
     }
 
-    public void OnSaveButtonClicked(MouseEvent mouseEvent) {
-    }
 
     public void OnTableClick(MouseEvent mouseEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Activar el llenguatge ' " + tableLanguages.getSelectionModel().getSelectedItem().getDescription() + "' ?", ButtonType.YES, ButtonType.NO);

@@ -5,6 +5,7 @@ import Controllers.StadisticsController;
 import Model.CodeUsages;
 import Model.UserUsages;
 import Singleton.Singleton;
+import Windows.Base.BaseStadisticsController;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
@@ -14,18 +15,11 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.input.MouseEvent;
 
 
-public class UserUsagesStadisticsViewController {
-
-    private static PagesController pagesController = Singleton.GetPagesController();
-    private static StadisticsController stadisticsController = Singleton.GetStadisticsController();
-
-    private static int maxBound;
-
-    @FXML private BarChart<String, Integer> barChartUsers;
-    @FXML private CategoryAxis x;
-    @FXML private NumberAxis y;
+public class UserUsagesStadisticsViewController extends BaseStadisticsController {
 
     public void InitData() {
+        InitializeUserLabel();
+
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("USUARIS");
         var usersUsageList = stadisticsController.GetUsersUsages();
@@ -35,31 +29,21 @@ public class UserUsagesStadisticsViewController {
             if (uu.getUserUsages() > maxBound) maxBound = uu.getUserUsages();
         }
 
-        barChartUsers.getData().addAll(series1);
+        barChart.getData().addAll(series1);
         SetBarChartStyle();
         SetBarChartBarsColors();
     }
 
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_StadisticsMenu);
-    }
-
+    @Override
     public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_StadisicsUagesPerUSer);
+        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_StadisicsUagesPerUser);
     }
 
-    private void SetBarChartStyle(){
-        x.setStyle("-fx-background-color: white;");
-        y.setStyle("-fx-background-color: white;");
-        y.setLowerBound(0);
-        y.setUpperBound(maxBound + 1);
-        y.setTickUnit(1);
-    }
-
-    private void SetBarChartBarsColors()
+    @Override
+    protected void SetBarChartBarsColors()
     {
         //set first bar color
-        for(Node n:barChartUsers.lookupAll(".default-color0.chart-bar")) {
+        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
             n.setStyle("-fx-bar-fill: #1ec974;");
         }
     }

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Fingerprints.AddTempFingerprintViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#009999,#FFFFFF);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.Fingerprints.AddTempFingerprintViewController">
    <children>
       <Pane layoutY="4.0" prefHeight="58.0" prefWidth="655.0">
          <children>
@@ -20,7 +15,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="admin">
                <font>
                   <Font size="17.0" />
                </font>
@@ -40,7 +35,7 @@
                   <Image url="@../../../../../logos/login.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" onMouseClicked="#OnLogOutButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../logos/logout.png" />
                </image>
@@ -52,7 +47,7 @@
             <Pane prefHeight="425.0" prefWidth="282.0">
                <children>
                   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e4e8" height="340.0" layoutX="20.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
-                  <Label layoutX="32.0" layoutY="14.0" text="NOVA EMPREMTA PERMANENT:" underline="true">
+                  <Label layoutX="32.0" layoutY="14.0" text="NOVA EMPREMTA TEMPORAL:" underline="true">
                      <font>
                         <Font size="20.0" />
                      </font>

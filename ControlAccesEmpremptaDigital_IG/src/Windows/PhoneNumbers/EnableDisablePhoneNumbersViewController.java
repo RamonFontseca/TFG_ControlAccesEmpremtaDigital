@@ -7,6 +7,7 @@ import Controllers.PhoneNumbersController;
 import Model.Code;
 import Model.PhoneNumber;
 import Singleton.Singleton;
+import Windows.Base.BasePhonesController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,17 +20,10 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class EnableDisablePhoneNumbersViewController {
-
-    @FXML private TableView<PhoneNumber> tablePhoneNumbers;
-    @FXML private TableColumn<PhoneNumber, String> columnPhoneNumber;
-    @FXML private TableColumn<PhoneNumber, String> columnState;
-
-    PagesController pagesController = new PagesController();
-    PhoneNumbersController phoneNumbersController = Singleton.GetPhoneNumbersController();
+public class EnableDisablePhoneNumbersViewController extends BasePhonesController {
 
     public void InitData(){
-        pagesController = new PagesController();
+        InitializeUserLabel();
 
         tablePhoneNumbers.setEditable(true);
         tablePhoneNumbers.setFixedCellSize(40.0);
@@ -42,24 +36,6 @@ public class EnableDisablePhoneNumbersViewController {
         columnState.setResizable(false);
 
         PopulateListView();
-    }
-
-    private void PopulateListView() {
-        ArrayList<PhoneNumber> phoneNumbersList = phoneNumbersController.GetPhoneNumbers();
-        ObservableList<PhoneNumber> obcode = FXCollections.observableArrayList();
-        //obcode.addAll(codsList);
-        tablePhoneNumbers.getItems().setAll(phoneNumbersList);
-    }
-
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_PhoneNumbersMenu);
-    }
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings,pagesController.page_EnableDisableCodes);
-    }
-
-    public void OnSaveButtonClicked(MouseEvent mouseEvent) {
     }
 
     public void OnTableClick(MouseEvent mouseEvent) {

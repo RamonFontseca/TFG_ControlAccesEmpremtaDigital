@@ -1,9 +1,10 @@
 package Windows.Codes;
 
 import Controllers.PagesController;
+import Windows.Base.BaseController;
 import javafx.scene.input.MouseEvent;
 
-public class CodesMenuViewController {
+public class CodesMenuViewController extends BaseController {
 
     PagesController pagesController = new PagesController();
 

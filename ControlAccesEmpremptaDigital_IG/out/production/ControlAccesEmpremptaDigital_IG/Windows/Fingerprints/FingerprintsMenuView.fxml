@@ -15,7 +15,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="username">
+            <Label fx:id="username" layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="85.0" text="admin">
                <font>
                   <Font size="17.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Image url="@../../../../../logos/login.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonLogOut" fitHeight="34.0" fitWidth="34.0" layoutX="598.0" layoutY="17.0" onMouseClicked="#OnLogOutButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../logos/logout.png" />
                </image>

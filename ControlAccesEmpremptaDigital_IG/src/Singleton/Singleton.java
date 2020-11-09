@@ -1,11 +1,19 @@
 package Singleton;
 
 import Controllers.*;
-
-import java.nio.file.Files;
+import Reader.DPFPReader4500;
 
 public class Singleton {
 
+    // UsersController
+    private static UsersController usersController;
+    public static UsersController GetUsersController(){
+        if (usersController == null)
+        {
+            usersController = new UsersController();
+        }
+        return usersController;
+    }
     // FingerprintsController
     private static FingerprintsController fingerprintsController;
     public static FingerprintsController GetFingerprintsController(){
@@ -15,6 +23,18 @@ public class Singleton {
         }
         return fingerprintsController;
     }
+
+    // DPFPReader4500
+    private static DPFPReader4500 dpfpReader4500;
+    public static DPFPReader4500 GetDPFPReader4500()
+    {
+        if (dpfpReader4500 == null)
+        {
+            dpfpReader4500 = new DPFPReader4500();
+        }
+        return dpfpReader4500;
+    }
+
 
     // CodesController
     private static CodesController codesController;

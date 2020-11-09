@@ -7,6 +7,8 @@ import Controllers.PhoneNumbersController;
 import Model.Code;
 import Model.PhoneNumber;
 import Singleton.Singleton;
+import Windows.Base.BaseNumericController;
+import Windows.Base.BasePhonesController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,16 +21,11 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class DeletePhoneNumbersViewController {
-
-    @FXML private TableView<PhoneNumber> tablePhoneNumbers;
-    @FXML private TableColumn<PhoneNumber, String> columnPhoneNumber;
-    @FXML private TableColumn<PhoneNumber, String> columnState;
-
-    private PagesController pagesController = Singleton.GetPagesController();
-    private PhoneNumbersController phoneNumbersController = Singleton.GetPhoneNumbersController();
+public class DeletePhoneNumbersViewController extends BasePhonesController {
 
     public void InitData(){
+        InitializeUserLabel();
+
         tablePhoneNumbers.setEditable(true);
         tablePhoneNumbers.setStyle( "-fx-alignment: CENTER;");
         tablePhoneNumbers.setStyle("-fx-cell-size: 50px");
@@ -41,26 +38,8 @@ public class DeletePhoneNumbersViewController {
         PopulateListView();
     }
 
-    private void PopulateListView() {
-        ArrayList<PhoneNumber> phoneNumbersList = phoneNumbersController.GetPhoneNumbers();
-        ObservableList<PhoneNumber> obPhoneNumber = FXCollections.observableArrayList();
-        //obcode.addAll(codsList);
-        tablePhoneNumbers.getItems().setAll(phoneNumbersList);
-    }
-
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_PhoneNumbersMenu);
-    }
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings,pagesController.page_EnableDisableCodes);
-    }
-
-    public void OnSaveButtonClicked(MouseEvent mouseEvent) {
-    }
 
     public void OnTableClick(MouseEvent mouseEvent) {
-        System.out.println(tablePhoneNumbers.getSelectionModel().getSelectedItem().getPhoneNumber());
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Esborrar el telèfon ' " + tablePhoneNumbers.getSelectionModel().getSelectedItem().getPhoneNumber() + "' ?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();

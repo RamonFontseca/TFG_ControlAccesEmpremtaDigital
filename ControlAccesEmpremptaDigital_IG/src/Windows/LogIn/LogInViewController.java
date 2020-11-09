@@ -3,6 +3,7 @@ package Windows.LogIn;
 
 import Controllers.PagesController;
 import Controllers.UsersController;
+import Singleton.Singleton;
 import Windows.MainMenu.MainMenuViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,15 +25,17 @@ public class LogInViewController {
     @FXML private PasswordField fieldPass;
     @FXML private Button buttonEnter;
 
-    PagesController pagesController = new PagesController();
-
+    PagesController pagesController = Singleton.GetPagesController();
+    UsersController usersController = Singleton.GetUsersController();
 
     public void OnLogInButtonClicked(MouseEvent mouseEvent) {
         //Treure es perque es logegi rapid
-        fieldUser.setText("Admin");
+        fieldUser.setText("admin");
         fieldPass.setText("1234");
-        if (areValidCredentials(fieldUser.getText().toString(), fieldPass.getText()))
+        if (areValidCredentials(fieldUser.getText().toString(), fieldPass.getText())) {
+            usersController.setActiveUserName(fieldUser.getText());
             changeScene(mouseEvent);
+        }
         else{
             fieldUser.clear();
             fieldPass.clear();
@@ -46,9 +49,8 @@ public class LogInViewController {
     }
 
     private boolean areValidCredentials(String username, String password) {
-        UsersController uc = new UsersController();
         try {
-            return (uc.isValidUser(username, password));
+            return (usersController.isValidUser(username, password));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,23 +58,6 @@ public class LogInViewController {
     }
 
     private void changeScene(MouseEvent mouseEvent) {
-
-        /*FXMLLoader loader =  new FXMLLoader(getClass().getResource(pagesController.page_MainMenu));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        MainMenuViewController mainMenuController = loader.getController();
-        mainMenuController.initData(fieldUser.getText());
-
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-
-        stage.setScene(scene);
-        stage.show();*/
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(pagesController.page_MainMenu));
         Parent p = null;
         try {

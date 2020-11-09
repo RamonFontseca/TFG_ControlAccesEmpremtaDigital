@@ -1,11 +1,12 @@
 package Windows.Settings;
 
 import Controllers.PagesController;
+import Windows.Base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class SettingsViewController {
+public class SettingsViewController extends BaseController {
 
     PagesController pagesController = new PagesController();
     String previousWindow;

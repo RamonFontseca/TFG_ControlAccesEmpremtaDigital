@@ -3,13 +3,14 @@ package Windows.Settings;
 import Controllers.NotificationsController;
 import Controllers.PagesController;
 import Singleton.Singleton;
+import Windows.Base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class ConfigureNotificationsViewController {
+public class ConfigureNotificationsViewController extends BaseController {
 
     PagesController pagesController = Singleton.GetPagesController();
     NotificationsController notificationsController;
@@ -20,18 +21,17 @@ public class ConfigureNotificationsViewController {
 
     public void InitData()
     {
+        InitializeUserLabel();
+
         notificationsController = Singleton.GetNotificationsController();
         textNotifState.setText(notificationsController.GetEnabledDescription());
         ChangeColor();
         textNotifState.setTextAlignment(TextAlignment.RIGHT);
     }
 
+    @Override
     public void OnBackButtonClicked(MouseEvent mouseEvent) {
         pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings, pagesController.page_MainMenu);
-    }
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent,pagesController.page_Settings,pagesController.page_ConfigureLanguage);
     }
 
     private void ChangeStateAndColor(){

@@ -162,8 +162,7 @@ public class DPFPReader4500 {
         return  matcher.verify(featureSet, template);
     }
 
-
-    private DPFPSample getSample(String activeReader, String prompt) throws InterruptedException
+    public DPFPSample getSample(String activeReader, String prompt) throws InterruptedException
     {
         final LinkedBlockingQueue<DPFPSample> samples = new LinkedBlockingQueue<DPFPSample>();
         DPFPCapture capture = DPFPGlobal.getCaptureFactory().createCapture();
@@ -207,6 +206,8 @@ public class DPFPReader4500 {
             capture.stopCapture();
         }
     }
+
+
 
 
     public void InitFingerprintReader()

@@ -2,8 +2,10 @@ package Windows.MainMenu;
 
 import Controllers.CodesController;
 import Controllers.PagesController;
+import Encrypter.Encrypter;
 import Model.Code;
 import Singleton.Singleton;
+import Windows.Base.BaseController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,39 +18,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainMenuViewController {
+public class MainMenuViewController extends BaseController {
 
     @FXML private Label username;
 
-    private PagesController pagesController = Singleton.GetPagesController();
-    private CodesController codesController = Singleton.GetCodesController();
-
     public void initData(String username) {
-        this.username.setText(username);
-
-    }
-
-    public void OnLogOutButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_LogIn);
-    }
-
-    /*private void goToScreen(MouseEvent mouseEvent, String pageUrl) {
-        Parent p = null;
-        try {
-            p = FXMLLoader.load(getClass().getResource(pageUrl));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene s = new Scene(p);
-
-        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        window.setScene(s);
-        window.show();
-    }
-     */
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_MainMenu);
+        InitializeUserLabel();
     }
 
     public void OnManageCodesButtonClick(MouseEvent mouseEvent) {

@@ -2,11 +2,12 @@ package Windows.Fingerprints;
 
 import Controllers.FingerprintsController;
 import Controllers.PagesController;
+import Windows.Base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 
-public class FingerprintsMenuViewController {
+public class FingerprintsMenuViewController extends BaseController {
     PagesController pagesController = new PagesController();
     FingerprintsController fingerprintsController = new FingerprintsController();
 

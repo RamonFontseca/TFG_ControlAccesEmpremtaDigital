@@ -47,7 +47,7 @@ public class PagesController {
     public String page_ConfigureNotifications = "/Windows/Settings/ConfigureNotificationsView.fxml";
     public String page_StadisticsMenu = "/Windows/Stadistics/StadisticsMenuView.fxml";
     public String page_StadisicsCodesUsages = "/Windows/Stadistics/CodeStadisticsView.fxml";
-    public String page_StadisicsUagesPerUSer = "/Windows/Stadistics/UserUsagesStadisticsView.fxml";
+    public String page_StadisicsUagesPerUser = "/Windows/Stadistics/UserUsagesStadisticsView.fxml";
 
     String previousWindow;
 

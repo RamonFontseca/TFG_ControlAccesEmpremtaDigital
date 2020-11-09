@@ -5,6 +5,7 @@ import Controllers.PagesController;
 import Model.Fingerprint;
 import Reader.DPFPReader4500;
 import Singleton.Singleton;
+import Windows.Base.BaseFingerprintsController;
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.capture.DPFPCapture;
 import com.digitalpersona.onetouch.capture.DPFPCapturePriority;
@@ -36,32 +37,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class AddTempFingerprintViewController {
-    FingerprintsController fingerprintsController = Singleton.GetFingerprintsController();
-    PagesController pagesController = Singleton.GetPagesController();
-    DPFPReader4500 reader = new DPFPReader4500();
+public class AddTempFingerprintViewController extends BaseFingerprintsController {
+    DPFPReader4500 reader = Singleton.GetDPFPReader4500();
 
     private DPFPFeatureSet dpfpFeatureSet;
 
-    private boolean valid;
 
     @FXML private ImageView fingerPrintImage;
     @FXML private Button bttnCapture;
+    @FXML private Button buttonSave;
     @FXML private TextField textCode;
     @FXML private ComboBox cmbRemainingUses;
 
     public void InitData(FingerprintsController fpController)
     {
-        bttnCapture.setDisable(false);
+        InitializeUserLabel();
+
         valid = false;
 
-        //this.fingerprintsController = fpController;
-        //InitFingerprintReader();
         reader.InitReader();
         dpfpFeatureSet = null;
-        fingerPrintImage.setOpacity(0.0);
 
         InitComboBox();
+
+        HideFingerprintImage();
+        SetSaveButtonEnable(false);
+        SetCaptureButtonEnable(true);
+        SetTextFieldEnable(true);
+        SetRemainingUsesEnable(true);
     }
 
     private void InitComboBox(){
@@ -69,95 +72,20 @@ public class AddTempFingerprintViewController {
         cmbRemainingUses.setItems(options);
         cmbRemainingUses.setValue("5");
     }
-
-    public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_FingerprintsMenu);
-    }
-
-    public void OnBackButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
-    }
-
-    private BufferedImage createImageFromBytes(byte[] imageData) {
-        ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-        try {
-            return ImageIO.read(bais);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected Image convertSampleToBitmap(DPFPSample sample) {
-        return DPFPGlobal.getSampleConversionFactory().createImage(sample);
-        //return DPFPGlobal.getSampleConversionFactory().convertToANSI381(sample);
-    }
-
-    private DPFPSample getSample(String activeReader, String prompt)
-            throws InterruptedException
-    {
-        final LinkedBlockingQueue<DPFPSample> samples = new LinkedBlockingQueue<DPFPSample>();
-        DPFPCapture capture = DPFPGlobal.getCaptureFactory().createCapture();
-        capture.setReaderSerialNumber(activeReader);
-        capture.setPriority(DPFPCapturePriority.CAPTURE_PRIORITY_LOW);
-        capture.addDataListener(new DPFPDataListener()
-        {
-            public void dataAcquired(DPFPDataEvent e) {
-                if (e != null && e.getSample() != null) {
-                    try {
-                        samples.put(e.getSample());
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-        capture.addReaderStatusListener(new DPFPReaderStatusAdapter()
-        {
-            int lastStatus = DPFPReaderStatusEvent.READER_CONNECTED;
-            public void readerConnected(DPFPReaderStatusEvent e) {
-                if (lastStatus != e.getReaderStatus())
-                    System.out.println("Reader is connected");
-                lastStatus = e.getReaderStatus();
-            }
-            public void readerDisconnected(DPFPReaderStatusEvent e) {
-                if (lastStatus != e.getReaderStatus())
-                    System.out.println("Reader is disconnected");
-                lastStatus = e.getReaderStatus();
-            }
-
-        });
-        try {
-            capture.startCapture();
-            System.out.print(prompt);
-            return samples.take();
-        } catch (RuntimeException e) {
-            System.out.printf("Failed to start capture. Check that reader is not used by another application.\n");
-            throw e;
-        } finally {
-            capture.stopCapture();
-        }
-    }
-
-    public void OnSaveButtonClicked(MouseEvent mouseEvent) {
-        if (valid)
-        {
-            pagesController.goToScreen(mouseEvent, pagesController.page_FingerprintsMenu);
-        }
-    }
-
+/*
     public void OnCaptureButtonClicked(MouseEvent mouseEvent) {
 
         if (!ValidateView()) return;
 
         if (reader == null || reader.GetActiveReader() == null) {
             System.out.println("Reader no disponible");
-            showAlertInfoMessage("No hi ha cap lector disponible");
+            showInformationMessage("No hi ha cap lector disponible");
             return;
         }
         if (fingerprintsController.fingerPrintList == null)
             fingerprintsController.fingerPrintList = new ArrayList<>();
 
-        showAlertInfoMessage("Escaneja la teva empremta un total de 5 cops al tancar aquest missatge.");
+        showInformationMessage("Escaneja la teva empremta un total de 5 cops al tancar aquest missatge.");
         // FINGERPRINT READ
         try {
             DPFPTemplate template = reader.ReadFingerPrinters();
@@ -167,7 +95,7 @@ public class AddTempFingerprintViewController {
 
         // VERITIFACTION
         //try {
-            DPFPSample sample = getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
+            DPFPSample sample = reader.getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
             if (sample == null)
                 throw new Exception();
 
@@ -191,7 +119,7 @@ public class AddTempFingerprintViewController {
                 //fingerprintsController.fingerPrintList.add(fp);
                 if (fingerprintsController.Add(fp)) {
 
-                    showAlertInfoMessage("Fingerprint saved!");
+                    showInformationMessage("Fingerprint saved!");
                     bttnCapture.setDisable(true);
                     fingerPrintImage.setOpacity(1.0);
                     valid = true;
@@ -199,7 +127,7 @@ public class AddTempFingerprintViewController {
                 else showAlertErrorMessage("Error al guardar!");
             }
             else {
-                showAlertInfoMessage("Fingerprint already exists!");
+                showInformationMessage("Fingerprint already exists!");
                 // Capture button enabled false
                 valid = false;
             }
@@ -208,52 +136,52 @@ public class AddTempFingerprintViewController {
             System.out.printf("Failed to perform verification.");
             showAlertErrorMessage("Failed to perform verification.");
         }
-    }
+    }*/
 
-    private int getRemainingUses(){
+    @Override
+    protected int getRemainingUses(){
         return Integer.parseInt(cmbRemainingUses.getSelectionModel().getSelectedItem().toString());
     }
 
-    private boolean ValidateView()
+    @Override
+    protected DPFPReader4500 GetReader()
     {
-        if (textCode.getText() == null || textCode.getText().isEmpty() || textCode.getText().isBlank())
-        {
-            showAlertInfoMessage("El camp 'NOM' és obligatori");
-            return false;
-        }
-        return true;
+        return reader;
     }
 
-    private void showAlertErrorMessage(String error) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(error);
-
-        alert.showAndWait();
-    }
-
-    private void showAlertInfoMessage(String error) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(null);
-        alert.setContentText(error);
-
-        alert.showAndWait();
-    }
-
-    private Alert CreateAlertInfoMessage(String error)
+    @Override
+    protected void SetSaveButtonEnable(boolean enable)
     {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION,error ,ButtonType.OK);
-        alert.setTitle("Information");
-        //alert.setHeaderText(null);
-        alert.setContentText(error);
-
-        return alert;
+        buttonSave.setDisable(!enable);
     }
 
-    private void SetAlertContent(Alert alert, String error)
+    @Override
+    protected void SetCaptureButtonEnable(boolean enable)
     {
-        alert.setContentText(error);
+        bttnCapture.setDisable(!enable);
+    }
+
+    @Override
+    protected void SetTextFieldEnable(boolean enable)
+    {
+        textCode.setDisable(!enable);
+    }
+
+    @Override
+    protected void ShowFingerprintImage()
+    {
+        fingerPrintImage.setOpacity(1.0);
+    }
+
+    @Override
+    protected void HideFingerprintImage()
+    {
+        fingerPrintImage.setOpacity(0.0);
+    }
+
+    @Override
+    protected void SetRemainingUsesEnable(boolean enable)
+    {
+        cmbRemainingUses.setDisable(!enable);
     }
 }

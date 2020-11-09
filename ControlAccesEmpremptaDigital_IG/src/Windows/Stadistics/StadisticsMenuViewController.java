@@ -2,9 +2,10 @@ package Windows.Stadistics;
 
 import Controllers.PagesController;
 import Singleton.Singleton;
+import Windows.Base.BaseController;
 import javafx.scene.input.MouseEvent;
 
-public class StadisticsMenuViewController {
+public class StadisticsMenuViewController extends BaseController {
 
     PagesController pagesController = Singleton.GetPagesController();
 
@@ -21,7 +22,7 @@ public class StadisticsMenuViewController {
     }
 
     public void OnUserUsagesStadisticsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToUserStadisticsScreenConstructing(mouseEvent, pagesController.page_StadisicsUagesPerUSer);
+        pagesController.goToUserStadisticsScreenConstructing(mouseEvent, pagesController.page_StadisicsUagesPerUser);
     }
 
 }

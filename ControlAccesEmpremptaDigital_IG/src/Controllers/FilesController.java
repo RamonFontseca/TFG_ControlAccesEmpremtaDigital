@@ -13,6 +13,7 @@ public class FilesController {
     public String stadisticsCodesFilePath = "src/Files/stadisticsCodes.txt";
     public String stadisticsUsersFilePath = "src/Files/stadisticsUsers.txt";
     public String phoneNumbersFilePath = "src/Files/phoneNumbers.txt";
+    public String fingerprintsFilePath = "src/Files/fingerprints.txt";
 
     public FilesController()
     {
