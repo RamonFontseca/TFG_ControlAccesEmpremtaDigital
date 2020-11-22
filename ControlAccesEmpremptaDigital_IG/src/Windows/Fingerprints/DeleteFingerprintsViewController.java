@@ -27,7 +27,7 @@ public class DeleteFingerprintsViewController extends BaseFingerprintsController
 
         tableCodes.setEditable(true);
         columnCode.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
+        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUsesString"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("status"));
         tableCodes.setStyle( "-fx-alignment: CENTER;");
         tableCodes.setStyle("-fx-cell-size: 50px");
@@ -47,7 +47,7 @@ public class DeleteFingerprintsViewController extends BaseFingerprintsController
         System.out.println(tableCodes.getSelectionModel().getSelectedItem().getName());
 
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Esborrar l'empremta ' " + tableCodes.getSelectionModel().getSelectedItem().getName() + "' ?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Esborrar l'empremta del propietari '" + tableCodes.getSelectionModel().getSelectedItem().getName() + "' ?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {

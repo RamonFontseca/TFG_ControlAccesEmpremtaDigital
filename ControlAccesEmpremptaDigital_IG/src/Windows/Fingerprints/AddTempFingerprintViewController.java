@@ -49,7 +49,7 @@ public class AddTempFingerprintViewController extends BaseFingerprintsController
     @FXML private TextField textCode;
     @FXML private ComboBox cmbRemainingUses;
 
-    public void InitData(FingerprintsController fpController)
+    public void InitData()
     {
         InitializeUserLabel();
 

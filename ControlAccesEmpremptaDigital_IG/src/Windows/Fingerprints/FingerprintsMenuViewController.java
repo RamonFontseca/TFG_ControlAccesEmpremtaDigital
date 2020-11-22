@@ -8,11 +8,6 @@ import javafx.scene.input.MouseEvent;
 import sample.Controller;
 
 public class FingerprintsMenuViewController extends BaseController {
-    PagesController pagesController = new PagesController();
-    FingerprintsController fingerprintsController = new FingerprintsController();
-
-    //@FXML private javafx.scene.control.Button bttnAddCodePerm;
-
 
     public FingerprintsMenuViewController() {
         //bttnAddCodePerm.setDisable(true);
@@ -28,12 +23,12 @@ public class FingerprintsMenuViewController extends BaseController {
 
     public void OnAddPermFingerprintClicked(MouseEvent mouseEvent)
     {
-        pagesController.goToFingerScreenWithController(mouseEvent, pagesController.page_AddPermFingerprint, fingerprintsController);
+        pagesController.goToFingerScreenWithController(mouseEvent, pagesController.page_AddPermFingerprint);
     }
 
     public void OnAddTempFingerprintClicked(MouseEvent mouseEvent)
     {
-        pagesController.goToTempFingerScreenWithController(mouseEvent, pagesController.page_AddTempFingerprint, fingerprintsController);
+        pagesController.goToTempFingerScreenWithController(mouseEvent, pagesController.page_AddTempFingerprint);
     }
 
     public void OnUpdateFingerprintClicked(MouseEvent mouseEvent) {

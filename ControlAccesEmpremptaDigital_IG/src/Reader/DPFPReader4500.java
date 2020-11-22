@@ -153,7 +153,8 @@ public class DPFPReader4500 {
     }
 
 
-    public DPFPVerificationResult VerifyFingerprint(DPFPTemplate template, DPFPFeatureSet featureSet){
+    public DPFPVerificationResult VerifyFingerprint(DPFPTemplate template, DPFPFeatureSet featureSet)
+    {
         // Template is the fingerprint saved to compare.
         // FeatureSet is the set of samples taken from the reader that wants to compare.
         DPFPVerification matcher = DPFPGlobal.getVerificationFactory().createVerification();

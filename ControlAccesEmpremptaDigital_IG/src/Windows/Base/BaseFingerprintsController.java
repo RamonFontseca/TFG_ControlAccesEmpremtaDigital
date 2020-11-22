@@ -17,7 +17,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import javax.print.attribute.standard.MediaSize;
+import java.io.FileOutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public abstract class BaseFingerprintsController extends BaseController{
@@ -115,6 +117,7 @@ public abstract class BaseFingerprintsController extends BaseController{
         }
 
         showInformationMessage("Escaneja la teva empremta un total de 5 cops al tancar aquest missatge.");
+
         try {
             // FINGERPRINT READ
             DPFPTemplate template = reader.ReadFingerPrinters();
@@ -122,7 +125,7 @@ public abstract class BaseFingerprintsController extends BaseController{
             // Fingerprint creation
             Fingerprint fingerprint = new Fingerprint(textCode.getText(),getRemainingUses(),true,template);
             fingerprint.SetTemplate(template);
-
+            
             // VERITIFACTION
             boolean fingerprintFound = verifyFingerprint(reader);
             // SAVE AND SHOW MESSAGE
@@ -132,7 +135,7 @@ public abstract class BaseFingerprintsController extends BaseController{
         }
     }
 
-    private boolean verifyFingerprint(DPFPReader4500 reader) throws DPFPImageQualityException, InterruptedException
+    protected boolean verifyFingerprint(DPFPReader4500 reader) throws DPFPImageQualityException, InterruptedException
     {
         DPFPSample sample = reader.getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
         if (sample == null)
@@ -158,7 +161,7 @@ public abstract class BaseFingerprintsController extends BaseController{
         if (!finded) {
             if (fingerprintsController.Add(fp)) {
                 valid = true;
-                showInformationMessage("Fingerprint saved!");
+                showInformationMessage("L'empremta s'ha guardat correctament!");
                 SetCaptureButtonEnable(false);
                 SetTextFieldEnable(false);
                 SetSaveButtonEnable(true);
@@ -169,7 +172,7 @@ public abstract class BaseFingerprintsController extends BaseController{
             else showAlertErrorMessage("Error al guardar!");
         }
         else {
-            showAlertErrorMessage("Fingerprint already exists!");
+            showAlertErrorMessage("L'empremta ja existent!");
             valid = false;
         }
         return false;

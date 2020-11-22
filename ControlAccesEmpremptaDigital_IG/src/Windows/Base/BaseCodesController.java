@@ -20,7 +20,7 @@ public abstract class BaseCodesController extends BaseNumericController {
     // Members
     @FXML protected TableView<Code> tableCodes;
     @FXML protected TableColumn<Code, String> columnCode;
-    @FXML protected TableColumn<Code, Integer> columnUses;
+    @FXML protected TableColumn<Code, String> columnUses;
     @FXML protected TableColumn<Code, String> columnState;
 
     // Methods
@@ -41,7 +41,7 @@ public abstract class BaseCodesController extends BaseNumericController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
-                alert.setContentText("Code added!");
+                alert.setContentText("Codi guardat!");
 
                 alert.showAndWait();
                 //codesController.SaveCodes();
@@ -50,16 +50,17 @@ public abstract class BaseCodesController extends BaseNumericController {
                 pagesController.goToScreen(mouseEvent, pagesController.page_CodesMenu);
             }
             else{
-                showAlertErrorMessage("Code alreaady exists!");
+                showAlertErrorMessage("El codi ja existeix!");
             }
         }
         else{
-            showAlertErrorMessage("Code format not valid. Min lenght 4 .. Max lenght 10");
+            showAlertErrorMessage("Format no vàlid. El codi ha de ser de 4 digits!");
         }
     }
 
     protected boolean isFormatCodeValid(String text) {
-        return (text.length() <= 10 && text.length() >=4);
+        //return (text.length() <= 10 && text.length() >=4);
+        return (text.length() == 4);
     }
 
     protected int getRemainingUses(){

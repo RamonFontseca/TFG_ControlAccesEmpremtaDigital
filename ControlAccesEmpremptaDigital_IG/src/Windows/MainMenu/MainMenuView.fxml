@@ -90,7 +90,7 @@
             <Pane layoutX="25.0" layoutY="240.0" prefHeight="58.0" prefWidth="605.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeee" height="58.0" stroke="BLACK" strokeType="INSIDE" width="604.0" />
-                  <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIOONAR NOTIFICACIONS" wrappingWidth="490.13427734375">
+                  <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIONAR TELÈFONS MÒBILS" wrappingWidth="490.13427734375">
                      <font>
                         <Font size="30.0" />
                      </font>

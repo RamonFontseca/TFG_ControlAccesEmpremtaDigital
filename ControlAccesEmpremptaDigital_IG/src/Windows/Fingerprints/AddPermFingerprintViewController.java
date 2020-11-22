@@ -51,7 +51,7 @@ public class AddPermFingerprintViewController extends BaseFingerprintsController
     @FXML private Button buttonSave;
     @FXML private TextField textCode;
 
-    public void InitData(FingerprintsController fpController)
+    public void InitData()
     {
         InitializeUserLabel();
 

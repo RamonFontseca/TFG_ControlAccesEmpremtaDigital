@@ -5,6 +5,7 @@ public class Code {
     private int remainingUses;
     private boolean isEnabled;
     private String status;
+    private String remainingUsesString;
 
     public Code() {
         this.codeNum = null;
@@ -32,6 +33,12 @@ public class Code {
         return remainingUses;
     }
 
+    public String getRemainingUsesString()
+    {
+        if (this.remainingUses == -1) return "PERMANENT";
+        else return Integer.toString(this.remainingUses);
+    }
+
     //public int getStatus(){ return isEnabled;}
     public String getStatus(){
         if (this.IsCodeEnabled()) return "HABILITAT";
@@ -46,13 +53,18 @@ public class Code {
 
     public boolean IsCodeEnabled(){ return (this.isEnabled); }
 
+    public boolean IsPermCode(){
+        return this.remainingUses == -1;
+    }
+
     public void setCodeNum(String codeNum)
     {
         this.codeNum = codeNum;
     }
 
     public void setRemainingUses(int remainingUses){
-        this.remainingUses = remainingUses;
+        if (this.remainingUses != -1)
+            this.remainingUses = remainingUses;
     }
 
     public void setEnabled(boolean enabled)

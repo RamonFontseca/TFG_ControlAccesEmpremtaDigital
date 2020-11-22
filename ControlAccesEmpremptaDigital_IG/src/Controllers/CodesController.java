@@ -186,4 +186,29 @@ public class CodesController {
             e.printStackTrace();
         }*/
     }
+
+
+    public boolean ValidateCode(String code)
+    {
+        if (!code.isEmpty() && !code.isBlank() && IsValidCode(code))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean IsValidCode(String code)
+    {
+
+        for (Code c : codesList)
+        {
+            if (c.getIsEnabled() && c.getCodeNum().equals(code)){
+                if (c.IsPermCode() || c.getRemainingUses() > 0) {
+                    c.setRemainingUses(c.getRemainingUses()-1);
+                    return  true;
+                }
+            }
+        }
+        return false;
+    }
 }

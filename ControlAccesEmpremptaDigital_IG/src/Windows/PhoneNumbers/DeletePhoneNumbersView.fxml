@@ -48,18 +48,6 @@
                   <Image url="@../../../../../logos/lock.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonSave" layoutX="405.0" layoutY="1.0" mnemonicParsing="false" onMouseClicked="#OnSaveButtonClicked" prefHeight="26.0" prefWidth="213.0" style="-fx-background-color: linear-gradient(#00CCCC,#9AFFED);" text="GUARDAR">
-               <graphic>
-                  <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../logos/save.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Label layoutX="24.0" layoutY="6.0" text="TELÈFONS DEL SISTEMA:" underline="true">
                <font>
                   <Font size="20.0" />

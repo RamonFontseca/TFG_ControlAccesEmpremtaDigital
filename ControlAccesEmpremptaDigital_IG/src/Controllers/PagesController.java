@@ -49,6 +49,8 @@ public class PagesController {
     public String page_StadisicsCodesUsages = "/Windows/Stadistics/CodeStadisticsView.fxml";
     public String page_StadisicsUagesPerUser = "/Windows/Stadistics/UserUsagesStadisticsView.fxml";
 
+    public String page_AccessValidation = "/Windows/AccessValidation/AccessValidationView.fxml";
+
     String previousWindow;
 
     public PagesController(){
@@ -95,7 +97,8 @@ public class PagesController {
         window.show();
     }
 
-    public void goToAddTempScreenConstructing(MouseEvent mouseEvent, String destinationPage){
+    public void goToAddTempScreenConstructing(MouseEvent mouseEvent, String destinationPage)
+    {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
         Parent root = null;
         try {
@@ -162,7 +165,7 @@ public class PagesController {
         window.show();
     }
 
-    public void goToFingerScreenWithController(MouseEvent mouseEvent, String destinationPage, FingerprintsController fingerprintsController)
+    public void goToFingerScreenWithController(MouseEvent mouseEvent, String destinationPage)
     {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
         Parent root = null;
@@ -172,7 +175,7 @@ public class PagesController {
             e.printStackTrace();
         }
         AddPermFingerprintViewController addPermFingerprintViewController = loader.getController();
-        addPermFingerprintViewController.InitData(fingerprintsController);
+        addPermFingerprintViewController.InitData();
 
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -180,7 +183,7 @@ public class PagesController {
         window.show();
     }
 
-    public void goToTempFingerScreenWithController(MouseEvent mouseEvent, String destinationPage, FingerprintsController fingerprintsController)
+    public void goToTempFingerScreenWithController(MouseEvent mouseEvent, String destinationPage)
     {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource(destinationPage));
         Parent root = null;
@@ -190,7 +193,7 @@ public class PagesController {
             e.printStackTrace();
         }
         AddTempFingerprintViewController addTempFingerprintViewController = loader.getController();
-        addTempFingerprintViewController.InitData(fingerprintsController);
+        addTempFingerprintViewController.InitData();
 
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();

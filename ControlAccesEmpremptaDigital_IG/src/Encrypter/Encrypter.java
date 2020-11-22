@@ -11,8 +11,8 @@ import java.util.Base64;
 
 public class Encrypter {
 
-    private static String secretKey = "paraulaSecreta";
-    private static String salt = "ramon1234";
+    private static final String secretKey = "paraulaSecreta";
+    private static final String salt = "ramon1234";
 
     public static String encrypt(String stringToEncript)
     {

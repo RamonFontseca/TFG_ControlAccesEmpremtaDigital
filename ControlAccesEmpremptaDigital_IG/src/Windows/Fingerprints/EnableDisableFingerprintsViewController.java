@@ -36,7 +36,7 @@ public class EnableDisableFingerprintsViewController extends BaseFingerprintsCon
         columnCode.setStyle("-fx-cell-size: 50px");
         tableCodes.setStyle("-fx-font-size: 20px");
         columnCode.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
+        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUsesString"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnCode.setResizable(false);
         columnUses.setResizable(false);
@@ -55,7 +55,7 @@ public class EnableDisableFingerprintsViewController extends BaseFingerprintsCon
         System.out.println(tableCodes.getSelectionModel().getSelectedItem().getName());
 
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Canviar d'estat el codi ' " + tableCodes.getSelectionModel().getSelectedItem().getName() + "' ?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Canviar d'estat l'empremta del propietari '" + tableCodes.getSelectionModel().getSelectedItem().getName() + "' ?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {

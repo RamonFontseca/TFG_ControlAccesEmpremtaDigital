@@ -29,7 +29,7 @@ public class EnableDisableCodesViewController extends BaseCodesController {
         columnCode.setStyle("-fx-cell-size: 50px");
         tableCodes.setStyle("-fx-font-size: 20px");
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
-        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
+        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUsesString"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnCode.setResizable(false);
         columnUses.setResizable(false);

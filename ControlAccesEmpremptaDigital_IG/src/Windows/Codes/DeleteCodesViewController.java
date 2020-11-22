@@ -27,7 +27,7 @@ public class DeleteCodesViewController extends BaseCodesController {
 
         tableCodes.setEditable(true);
         columnCode.setCellValueFactory(new PropertyValueFactory<>("codeNum"));
-        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUses"));
+        columnUses.setCellValueFactory(new PropertyValueFactory<>("remainingUsesString"));
         columnState.setCellValueFactory(new PropertyValueFactory<>("status"));
         tableCodes.setStyle( "-fx-alignment: CENTER;");
         tableCodes.setStyle("-fx-cell-size: 50px");

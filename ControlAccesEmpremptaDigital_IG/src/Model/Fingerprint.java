@@ -9,6 +9,7 @@ public class Fingerprint {
     private byte[] fingerprintImage;
     private DPFPTemplate template;
     private String status;
+    private String remainingUsesString;
 
     public Fingerprint()
     {
@@ -49,6 +50,12 @@ public class Fingerprint {
         return remainingUses;
     }
 
+    public String getRemainingUsesString()
+    {
+        if (this.remainingUses == -1) return "PERMANENT";
+        else return Integer.toString(this.remainingUses);
+    }
+
     public boolean getEnabled()
     {
         return enabled;
@@ -72,7 +79,8 @@ public class Fingerprint {
 
     public void SetRemainingUses(int value)
     {
-        this.remainingUses = value;
+        if (this.remainingUses != -1)
+            this.remainingUses = value;
     }
 
     public void SetTemplate(DPFPTemplate template)

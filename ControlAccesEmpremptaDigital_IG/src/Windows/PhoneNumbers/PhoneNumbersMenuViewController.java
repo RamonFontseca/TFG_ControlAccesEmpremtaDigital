@@ -17,7 +17,7 @@ public class PhoneNumbersMenuViewController extends BaseController {
     }
 
     public void OnSettingsButtonClicked(MouseEvent mouseEvent) {
-        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_CodesMenu);
+        pagesController.goToSettingsScreenFrom(mouseEvent, pagesController.page_Settings, pagesController.page_PhoneNumbersMenu);
     }
 
     public void OnChangeStatusCodeButtonClicked(MouseEvent mouseEvent) {

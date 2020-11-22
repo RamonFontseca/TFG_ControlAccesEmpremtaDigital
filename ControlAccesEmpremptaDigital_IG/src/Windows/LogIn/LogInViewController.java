@@ -30,8 +30,8 @@ public class LogInViewController {
 
     public void OnLogInButtonClicked(MouseEvent mouseEvent) {
         //Treure es perque es logegi rapid
-        fieldUser.setText("admin");
-        fieldPass.setText("1234");
+        //fieldUser.setText("admin");
+        //fieldPass.setText("1234");
         if (areValidCredentials(fieldUser.getText().toString(), fieldPass.getText())) {
             usersController.setActiveUserName(fieldUser.getText());
             changeScene(mouseEvent);
@@ -46,6 +46,11 @@ public class LogInViewController {
 
             alert.showAndWait();
         }
+    }
+
+    public void OnAccesButtonClicked(MouseEvent mouseEvent)
+    {
+        pagesController.goToScreen(mouseEvent, pagesController.page_AccessValidation);
     }
 
     private boolean areValidCredentials(String username, String password) {

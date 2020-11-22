@@ -44,10 +44,11 @@ public class UsersController {
                 String data = scanner.nextLine();
                 System.out.println(data);
                 var a = data.split(",");
-                String part1 = a[0];
-                String part2 = a[1];
-                String passwordDecrypted = Encrypter.decrypt(part2);
-                User u = new User(part1, passwordDecrypted);
+                String userName = a[0];
+                String passwordCrypted = a[1];
+
+                String passwordDecrypted = Encrypter.decrypt(passwordCrypted);
+                User u = new User(userName, passwordDecrypted);
 
                 usersList.add(u);
             }

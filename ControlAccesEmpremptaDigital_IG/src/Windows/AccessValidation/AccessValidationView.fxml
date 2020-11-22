@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="655.0" style="-fx-background-color: linear-gradient(#53b8b8,#009999);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Windows.AccessValidation.AccesValidationViewController">
+   <children>
+      <Pane layoutX="4.0" layoutY="6.0" prefHeight="482.0" prefWidth="648.0">
+         <children>
+            <Pane layoutY="69.0" prefHeight="413.0" prefWidth="282.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e4e8" height="340.0" layoutX="20.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Button fx:id="button81" layoutX="105.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton8Click" prefHeight="70.0" prefWidth="70.0" text="8" />
+                  <Button fx:id="button51" layoutX="105.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton5Click" prefHeight="70.0" prefWidth="70.0" text="5" />
+                  <Button fx:id="button21" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton2Click" prefHeight="70.0" prefWidth="70.0" text="2" />
+                  <Button fx:id="button01" layoutX="105.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#OnButton0Click" prefHeight="70.0" prefWidth="70.0" text="0" />
+                  <Button fx:id="button61" layoutX="180.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton6Click" prefHeight="70.0" prefWidth="70.0" text="6" />
+                  <Button fx:id="button41" layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#OnButton4Click" prefHeight="70.0" prefWidth="70.0" text="4" />
+                  <Button fx:id="button91" layoutX="180.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton9Click" prefHeight="70.0" prefWidth="70.0" text="9" />
+                  <Button fx:id="button71" layoutX="30.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#OnButton7Click" prefHeight="70.0" prefWidth="70.0" text="7" />
+                  <Button fx:id="button31" layoutX="180.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton3Click" prefHeight="70.0" prefWidth="70.0" text="3" />
+                  <Button fx:id="button11" layoutX="30.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#OnButton1Click" prefHeight="70.0" prefWidth="70.0" text="1" />
+                  <Button layoutX="180.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#OnEraseButtonClicked" prefHeight="70.0" prefWidth="70.0">
+                     <graphic>
+                        <ImageView fx:id="buttonErase" fitHeight="23.0" fitWidth="26.0" onMouseClicked="#OnEraseButtonClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../logos/erase.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button layoutX="30.0" layoutY="310.0" mnemonicParsing="false" opacity="0.5" prefHeight="70.0" prefWidth="70.0" />
+                  <Label layoutX="32.0" layoutY="14.0" text="NOU TELÈFON:" underline="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textCode" layoutX="28.0" prefHeight="44.0" prefWidth="178.0" promptText="...">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="bttnEnterCode" layoutX="215.0" mnemonicParsing="false" onMouseClicked="#OnEnterButtonClicked" prefHeight="44.0" prefWidth="43.0">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../logos/right_arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </Pane>
+            <Button fx:id="bttnEnterFingerprint" layoutX="422.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#OnEnterFingerprintButtonClicked" prefHeight="146.0" prefWidth="104.0">
+               <graphic>
+                  <ImageView fx:id="bttnFingerprint" fitHeight="131.0" fitWidth="97.0" onMouseClicked="#OnEnterFingerprintButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../logos/fingerprint.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="25.0" layoutY="14.0" prefHeight="44.0" prefWidth="232.0" text="ACCÉS AMB CODI NUMÈRIC">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="343.0" layoutY="14.0" prefHeight="44.0" prefWidth="272.0" text="ACCÉS AMB EMPREMTA DIGITAL">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="buttonLogOut" fitHeight="44.0" fitWidth="43.0" layoutX="576.0" layoutY="424.0" onMouseClicked="#OnLogOutButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../logos/logout.png" />
+               </image></ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

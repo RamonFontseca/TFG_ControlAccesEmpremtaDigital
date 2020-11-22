@@ -2,8 +2,17 @@ package Controllers;
 
 import Model.Fingerprint;
 import Model.PhoneNumber;
+import Reader.DPFPReader4500;
 import Singleton.Singleton;
+import Windows.Base.BaseFingerprintsController;
+import com.digitalpersona.onetouch.DPFPDataPurpose;
+import com.digitalpersona.onetouch.DPFPFeatureSet;
 import com.digitalpersona.onetouch.DPFPGlobal;
+import com.digitalpersona.onetouch.DPFPSample;
+import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
+import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
+import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.net.FileNameMap;
@@ -109,5 +118,43 @@ public class FingerprintsController {
             }
         }
         return false;
+    }
+
+
+    public Pair<String, Boolean> ValidateFingerprint() {
+        DPFPReader4500 reader = Singleton.GetDPFPReader4500();
+        reader.InitReader();
+
+        try{
+            return verifyFingerprint(reader);
+        }
+        catch (Exception ex)
+        {
+            return new Pair("",false);
+        }
+    }
+
+    protected Pair<String, Boolean> verifyFingerprint(DPFPReader4500 reader) throws DPFPImageQualityException, InterruptedException
+    {
+        DPFPSample sample = reader.getSample(reader.GetActiveReader().getSerialNumber(), "Scan your finger\n");
+        if (sample == null)
+            return new Pair("",false);
+
+        DPFPFeatureExtraction featureExtractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
+        DPFPFeatureSet featureSet = featureExtractor.createFeatureSet(sample, DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
+
+        for(Fingerprint f: getFingerprints())
+        {
+            DPFPVerificationResult result = reader.VerifyFingerprint(f.GetTemplate(), featureSet);
+            if (result.isVerified()){
+                System.out.println("L'empremta existeix");
+                f.SetRemainingUses(f.getRemainingUses() - 1);
+                if (f.getEnabled()){
+                    return new Pair(f.getName(),true);
+                }
+                return new Pair("",false);
+            }
+        }
+        return new Pair("",false);
     }
 }

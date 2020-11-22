@@ -36,5 +36,10 @@
             <Image url="@../../../../../logos/arrow.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="51.0" layoutX="26.0" layoutY="424.0" onMouseClicked="#OnAccesButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../logos/fingerprint.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
